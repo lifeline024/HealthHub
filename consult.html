@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Consult Doctors</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(335deg, #2c7782);
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      user-select: none;
+    }
+
+    .container {
+      background: linear-gradient(335deg, #4ca1af, #c4e0e5);
+      padding: 20px;
+      margin: 0px;
+      margin-top: 0px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 450px;
+      box-sizing: border-box;
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+      margin-bottom: 20px;
+      font-size: 1.5rem;
+    }
+
+    .doctor-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .doctor-list li {
+      margin-bottom: 20px;
+      padding: 15px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      background-color: #f9f9f9;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 15px;
+    }
+
+    .doctor-info {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      width: 100%;
+    }
+
+    .doctor-info img {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .doctor-info div {
+      flex: 1;
+    }
+
+    .doctor-list h3 {
+      margin: 0;
+      color: #007bff;
+      font-size: 1.1rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .doctor-list p {
+      margin: 5px 0;
+      color: #555;
+      font-size: 0.9rem;
+    }
+
+    .contact-info {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      width: 100%;
+      margin-top: 10px;
+    }
+
+    .contact-info a {
+      text-decoration: none;
+    }
+
+    .contact-info img {
+      width: 35px;
+      height: 35px;
+      transition: transform 0.2s ease-in-out;
+    }
+
+    .contact-info img:hover {
+      transform: scale(1.1);
+    }
+
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 1.3rem;
+      }
+
+      .doctor-info img {
+        width: 50px;
+        height: 50px;
+      }
+
+      .doctor-list h3 {
+        font-size: 1rem;
+      }
+
+      .doctor-list p {
+        font-size: 0.8rem;
+      }
+
+      .contact-info img {
+        width: 30px;
+        height: 30px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        padding: 15px;
+      }
+
+      h1 {
+        font-size: 1.1rem;
+      }
+
+      .doctor-list li {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .doctor-info {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .contact-info {
+        justify-content: space-around;
+      }
+      
+    }
+
+
+    .doctor-info {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.doctor-info img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+}
+
+.doctor-info div {
+  flex: 1;
+}
+
+
+/* Fixed Navbar */
+.navbar {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background: linear-gradient(135deg, #1e3a8a, #2563eb);
+  display: flex;
+  justify-content: space-around;
+  padding: 10px 0;
+  border-radius: 10px;
+  box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.1);
+  z-index: 1000; /* Ensure navbar stays on top */
+}
+
+.nav-item {
+  color: white;
+  text-decoration: none;
+  font-size: 1rem;
+  padding: 8px 12px;
+  border-radius: 10px;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.nav-item:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-5px);
+}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Consult Our Doctors</h1>
+    <ul class="doctor-list">
+      <li>
+        <div class="doctor-info">
+          <img src="https://img.icons8.com/?size=100&id=0WWwdtiSb6xB&format=png&color=000000" alt="Dr.Dilip">
+          <div>
+            <h3>Dr. Dilip Kumar</h3>
+            <p>General Physician</p>
+          </div>
+        </div>
+        <div class="contact-info">
+          <a href="tel:+917667110195">
+            <img src="https://cdn-icons-png.flaticon.com/512/159/159832.png" alt="Call">
+          </a>
+          <a href="https://wa.me/+917667110195?text=Hi%20Dr.%20Doctor%20,%20I%20need%20consultation." target="_blank">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+          </a>
+        </div>
+      </li>
+      <li>
+        <div class="doctor-info">
+          <img src="https://img.icons8.com/?size=100&id=0WWwdtiSb6xB&format=png&color=000000" alt="Dr. Deepak">
+          <div>
+            <h3>Dr. Deepak</h3>
+            <p>General Practitioner</p>
+          </div>
+        </div>
+        <div class="contact-info">
+          <a href="tel:+918083030197">
+            <img src="https://cdn-icons-png.flaticon.com/512/159/159832.png" alt="Call">
+          </a>
+          <a href="https://wa.me/+918083030197?text=Hi%20Dr.%20Doctor%20,%20I%20need%20consultation." target="_blank">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+          </a>
+        </div>
+      </li>
+      <li>
+        <div class="doctor-info">
+          <img src="https://img.icons8.com/?size=100&id=0WWwdtiSb6xB&format=png&color=000000" alt="Dr. Hamid">
+          <div>
+            <h3>Dr. Anu Rani</h3>
+            <p>Gynecologist</p>
+          </div>
+        </div>
+        <div class="contact-info">
+          <a href="tel:+918809960296">
+            <img src="https://cdn-icons-png.flaticon.com/512/159/159832.png" alt="Call">
+          </a>
+          <a href="https://wa.me/+918809960296?text=Hi%20Dr.%20Doctor%20,%20I%20need%20consultation." target="_blank">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+          </a>
+        </div>
+      </li>
+    </ul>
+  </div>
+   <!-- Fixed Navbar -->
+   <div class="navbar">
+    <a href="home.html" class="nav-item"><i class="fas fa-home"></i> Home</a>
+    
+    <a href="discover.html" class="nav-item"><i class="fas fa-compass"></i> Discover</a>
+    <a href="user-info.html" class="nav-item"><i class="fas fa-user"></i> Profile</a>
+</div>
+</body>
+</html>

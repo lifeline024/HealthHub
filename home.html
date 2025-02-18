@@ -429,14 +429,19 @@ body {
 
 </style>
 <body>
-   <div class="header">
+    <div class="header">
         <div class="profile">
             <button onclick="window.location.href='user.html'" class="profile-btn">
                 <i class="fas fa-user-circle"></i>
             </button>
             <h2>Welcome...</h2>
         </div>
-   </div>
+        <div class="header-right">
+            <button onclick="window.location.href='book.html'" class="book-btn">
+                <i class="fas fa-clipboard-list"></i>
+            </button> 
+        </div>
+    </div>
 
    <!-- Hero Section with Image and Quote -->
    <div class="hero">
@@ -515,18 +520,44 @@ body {
 
 
    <style>
-        .profile-btn {
-            background: none;
-            border: none;
-            font-size: 2rem;
-            color: white;
-            cursor: pointer;
-            transition: transform 0.3s ease;
-        }
+    .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: linear-gradient(135deg, #1e3a8a, #2563eb);
+        color: white;
+        padding: 15px 20px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+    }
 
-        .profile-btn:hover {
-            transform: scale(1.1);
-        }
+    .profile {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .profile-btn, .book-btn {
+        background: none;
+        border: none;
+        color: white;
+        font-size: 24px;
+        cursor: pointer;
+        transition: transform 0.3s ease;
+    }
+
+    .profile-btn:hover, .book-btn:hover {
+        transform: scale(1.1);
+    }
+
+    h2 {
+        font-size: 20px;
+    }
+
+    .header-right {
+        display: flex;
+        align-items: center;
+    }
    </style>
 <script>
     // Slideshow for the first container (Healthcare Services)

@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Doctor Appointment Booking</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+  <style>
+    /* General Styles */
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #6a11cb, #2575fc);
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      color: #333;
+      user-select: none;
+    }
+
+    .container {
+      background: #fff;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      max-width: 500px;
+      width: 90%;
+      text-align: center;
+      margin: 1rem;
+      box-sizing: border-box;
+    }
+
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+      color: #2575fc;
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+      text-align: left;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+      color: #555;
+    }
+
+    input[type="text"], input[type="number"], select, textarea {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-size: 1rem;
+      transition: border-color 0.3s ease;
+      box-sizing: border-box;
+    }
+
+    input[type="text"]:focus, input[type="number"]:focus, select:focus, textarea:focus {
+      border-color: #2575fc;
+      outline: none;
+    }
+
+    textarea {
+      resize: vertical;
+    }
+
+    button {
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-radius: 5px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      background: #2575fc;
+      color: #fff;
+    }
+
+    button:hover {
+      background: #1a5bbf;
+    }
+
+    .doctor-list {
+      display: none;
+    }
+
+    .doctor-card {
+      background: #f9f9f9;
+      padding: 1rem;
+      border-radius: 5px;
+      margin-bottom: 1rem;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .doctor-card h3 {
+      margin: 0;
+      color: #2575fc;
+    }
+
+    .doctor-card p {
+      margin: 0.5rem 0;
+      color: #555;
+    }
+
+    .confirmation {
+      display: none;
+      color: #28a745;
+    }
+
+    .confirmation h2 {
+      color: #28a745;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 600px) {
+      .container {
+        padding: 1rem;
+        width: 95%;
+        margin: 0.5rem;
+      }
+
+      h1 {
+        font-size: 1.75rem;
+      }
+
+      input[type="text"], input[type="number"], select, textarea {
+        padding: 0.5rem;
+        font-size: 0.9rem;
+      }
+
+      button {
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+      }
+    }
+
+    @media (max-width: 320px) {
+      .container {
+        padding: 0.75rem;
+        width: 100%;
+        margin: 0.25rem;
+      }
+
+      h1 {
+        font-size: 1.5rem;
+      }
+
+      input[type="text"], input[type="number"], select, textarea {
+        padding: 0.4rem;
+        font-size: 0.8rem;
+      }
+
+      button {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.8rem;
+      }
+    }
+  
+    .header {
+        display: flex;
+        justify-content: flex-start; /* Left Side Alignment */
+        padding: 10px;
+        background-color: #f8f9fa;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+    
+    .back-btn {
+        background-color: transparent;
+        color: #2563eb;
+        border: none;
+        font-size: 24px;
+        cursor: pointer;
+        transition: color 0.3s ease;
+    }
+    
+    .back-btn:hover {
+        color: #1e3a8a;
+    }
+    
+  </style>
+</head>
+<body>
+<!-- Appointment Form Page -->
+<div class="container" id="appointment-form-page">
+    <button class="back-btn" onclick="window.location.href='home.html'">⬅️</button>
+    <h1 class="animate_animated animate_fadeInDown">Book Your Doctor Appointment</h1>
+    <form id="appointment-form">
+      <div class="form-group">
+        <label for="name">Full Name:</label>
+        <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+      </div>
+      <div class="form-group">
+        <label for="mobile">Mobile Number:</label>
+        <input type="text" id="mobile" name="mobile" placeholder="Enter your mobile number" required>
+      </div>
+      <div class="form-group">
+        <label for="blood-group">Blood Group:</label>
+        <select id="blood-group" name="blood-group" required>
+          <option value="">Select Blood Group</option>
+          <option value="A+">A+</option>
+          <option value="A-">A-</option>
+          <option value="B+">B+</option>
+          <option value="B-">B-</option>
+          <option value="O+">O+</option>
+          <option value="O-">O-</option>
+          <option value="AB+">AB+</option>
+          <option value="AB-">AB-</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="weight">Weight (in kg):</label>
+        <input type="number" id="weight" name="weight" placeholder="Enter your weight" required>
+      </div>
+      <div class="form-group">
+        <label for="height">Height (in cm):</label>
+        <input type="number" id="height" name="height" placeholder="Enter your height" required>
+      </div>
+      <div class="form-group">
+        <label for="symptoms">Symptoms:</label>
+        <textarea id="symptoms" name="symptoms" rows="4" placeholder="Describe your symptoms" required></textarea>
+      </div>
+      <!-- New Appointment Date Field -->
+      <div class="form-group">
+        <label for="appointment-date">Appointment Date:</label>
+        <input type="date" id="appointment-date" name="appointment-date" required>
+      </div>
+      <button type="submit" class="submit-btn">Next</button>
+    </form>
+  </div>
+
+  <!-- Doctor List Page -->
+  <div class="container doctor-list" id="doctor-list-page">
+    <h1 class="animate_animated animate_fadeInDown">Select a Doctor</h1>
+    <div class="doctor-card">
+      <h3>Dr. John Doe</h3>
+      <p>Cardiologist</p>
+      <button onclick="bookAppointment('Dr. John Doe', 'Cardiologist')">Book</button>
+    </div>
+    <div class="doctor-card">
+      <h3>Dr. Jane Smith</h3>
+      <p>Dermatologist</p>
+      <button onclick="bookAppointment('Dr. Jane Smith', 'Dermatologist')">Book</button>
+    </div>
+    <div class="doctor-card">
+      <h3>Dr. Emily Brown</h3>
+      <p>Pediatrician</p>
+      <button onclick="bookAppointment('Dr. Emily Brown', 'Pediatrician')">Book</button>
+    </div>
+    <div class="doctor-card">
+      <h3>Dr. Michael Lee</h3>
+      <p>Orthopedic Surgeon</p>
+      <button onclick="bookAppointment('Dr. Michael Lee', 'Orthopedic Surgeon')">Book</button>
+    </div>
+  </div>
+
+  <!-- Confirmation Page -->
+  <div class="container confirmation" id="confirmation-page">
+    <h2>🎉 Appointment Booked Successfully!</h2>
+    <p>We will contact you shortly.</p>
+    <button onclick="window.location.href='home.html'">Go Back</button>
+  </div>
+
+  <script>
+    // Handle Form Submission
+    document.getElementById('appointment-form').addEventListener('submit', function (e) {
+      e.preventDefault();
+      const name = document.getElementById('name').value;
+      const mobile = document.getElementById('mobile').value;
+      const bloodGroup = document.getElementById('blood-group').value;
+      const weight = document.getElementById('weight').value;
+      const height = document.getElementById('height').value;
+      const symptoms = document.getElementById('symptoms').value;
+
+      // Save user details to localStorage
+      localStorage.setItem('fullName', name);
+      localStorage.setItem('mobile', mobile);
+      localStorage.setItem('bloodGroup', bloodGroup);
+      localStorage.setItem('weight', weight);
+      localStorage.setItem('height', height);
+      localStorage.setItem('symptoms', symptoms);
+
+      // Move to Doctor List Page
+      document.getElementById('appointment-form-page').style.display = 'none';
+      document.getElementById('doctor-list-page').style.display = 'block';
+    });
+
+    // Book Appointment
+    function bookAppointment(doctorName, specialization) {
+      const appointment = {
+        doctorName,
+        specialization,
+        date: new Date().toLocaleDateString(),
+        time: new Date().toLocaleTimeString()
+      };
+
+      // Save appointment to localStorage
+      localStorage.setItem('appointment', JSON.stringify(appointment));
+
+      // Show Confirmation Page
+      document.getElementById('doctor-list-page').style.display = 'none';
+      document.getElementById('confirmation-page').style.display = 'block';
+    }
+
+    // Go Back to Doctor List
+    function goBack() {
+      document.getElementById('confirmation-page').style.display = 'none';
+      document.getElementById('doctor-list-page').style.display = 'block';
+    }
+  </script>
+</body>
+</html>
