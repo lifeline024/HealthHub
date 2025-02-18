@@ -256,92 +256,57 @@
                 padding: 8px;
             }
         }
-
-        /* Fixed Navbar */
-.navbar {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    background: linear-gradient(135deg, #1e3a8a, #2563eb);
-    display: flex;
-    justify-content: space-around;
-    padding: 10px 0;
-    border-radius: 10px;
-    box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.1);
-    z-index: 1000; /* Ensure navbar stays on top */
-}
-
-.nav-item {
-    color: white;
-    text-decoration: none;
-    font-size: 1rem;
-    padding: 8px 12px;
-    border-radius: 10px;
-    transition: background 0.3s ease, transform 0.3s ease;
-}
-
-.nav-item:hover {
-    background: rgba(255, 255, 255, 0.1);
-    transform: translateY(-5px);
-}
-
     </style>
 </head>
 <body>
-    <div class="theme-toggle">
-        <input type="checkbox" id="theme-switch" onchange="toggleTheme()">
-        <label for="theme-switch">Dark Mode</label>
-    </div>
-
     <div class="container">
         <div class="card">
             <div class="profile-header">
-                <img src="dev pic.jpg" alt="Profile Picture" class="profile-pic">
+                <img src="progile.jpg" alt="Profile Picture" class="profile-pic">
                 <div class="profile-info">
-                    <h2 id="fullName">Devjyoti Roy</h2>
-                    <p id="ageGender">Age: 19 | Male</p>
+                    <h2 id="fullName">JOhn</h2>
+                    <p id="ageGender">Age: xx | Male</p>
                     <p id="bloodGroup">Blood Group: B+</p>
                 </div>
             </div>
             <!-- <input type="file" id="imageUpload" accept="image/*"> -->
+            <button onclick="logout()" style="background-color: #e74c3c; color: white; border: none; padding: 8px 15px; border-radius: 5px; font-size: 14px; cursor: pointer; transition: background-color 0.3s;">Logout</button>
         </div>
-
-        <!-- <a href="http://127.0.0.1:5500/setting.html" class="settings">Settings</a> -->
-
+        
         <div class="card">
             <h3>Health Metrics</h3>
             <div class="health-metrics">
+                <!-- Weight Metric -->
                 <div class="health-metric">
-                    <img src="https://cdn0.iconfinder.com/data/icons/health-care-and-medical-2/256/Medical__Health_care-38-512.png" alt="Weight Icon">
-                    <p>54 kg</p>
+                    <img src="https://img.icons8.com/?size=100&id=YH8gAZUiHpov&format=png&color=000000" alt="Weight Icon">
+                    <p id="weight">54 kg</p> <!-- Display weight -->
                 </div>
+                
+                <!-- Height Metric -->
                 <div class="health-metric">
-                    <img src="https://media.istockphoto.com/id/820396992/vector/blood-pressure-icon.jpg?s=612x612&w=0&k=20&c=0ZiIvpkGXNmmBVig059INJjAsWby_Q4GepcGzehShjQ=" alt="Blood Pressure Icon">
-                    <p>120/80 mmHg</p>
+                    <img src="https://img.icons8.com/?size=100&id=faowdPV6b0VP&format=png&color=000000" alt="Height Icon">
+                    <p id="height">180 cm</p> <!-- Display height -->
                 </div>
+                
+                <!-- Contact Number Metric -->
                 <div class="health-metric">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT3diHRiP0V2umxW6NgFCv1PrriJmVPQxfrvQ&s" alt="Heart Rate Icon">
-                    <p>72 bpm</p>
+                    <img src="https://img.icons8.com/?size=100&id=43608&format=png&color=000000" alt="Contact Icon">
+                    <p id="contactNumber">+91 xxx xxx xxx</p> <!-- Display contact -->
                 </div>
             </div>
-            <div class="progress-bar"><div style="width: 72%;"></div></div>
-            <p>Weight Progress</p>
-            <div class="progress-bar blood-pressure"><div style="width: 53%;"></div></div>
-            <p>Blood Pressure Progress</p>
-            <div class="progress-bar heart-rate"><div style="width: 63%;"></div></div>
-            <p>Heart Rate Progress</p>
         </div>
 
         <div class="card">
             <h3>Medical Records</h3>
             <div class="medical-records">
                 <ul>
-                    <li>Diabetes Type 2 - Diagnosed in 2020</li>
-                    <li>Last Health Checkup - Jan 2024</li>
-                    <li>Recent X-Ray - Normal</li>
+                    <!-- Dynamically display medical history and allergies -->
+                    <li id="medicalHistory">Medical History: N/A</li>
+                    <li id="allergies">Allergies: N/A</li>
                 </ul>
             </div>
         </div>
+        
 
         <div class="card">
             <h3>Upcoming Appointments</h3>
@@ -349,13 +314,14 @@
             <a href="#" class="button">View All Appointments</a>
         </div>
     </div>
-<div class="navbar">
-       <a href="home.html" class="nav-item"><i class="fas fa-home"></i> Home</a>
-       
-       <a href="discover.html" class="nav-item"><i class="fas fa-compass"></i> Discover</a>
-       <a href="user.html" class="nav-item"><i class="fas fa-user"></i> Profile</a>
-   </div>
+
     <script>
+
+        function logout() {
+            localStorage.clear(); // Clears all stored data
+            window.location.href = "index.html"; // Redirect to login page
+        }
+        
         // Function to toggle between dark and light theme
         function toggleTheme() {
             document.body.classList.toggle('dark-theme');
@@ -394,20 +360,50 @@
 
         // Fetch and display user information from localStorage
         window.onload = function() {
+            // Fetching the stored data from localStorage
             const fullName = localStorage.getItem('fullName');
             const age = localStorage.getItem('age');
             const bloodgroup = localStorage.getItem('bloodgroup');
-
+            const gender = localStorage.getItem('gender');
+            const height = localStorage.getItem('height');
+            const weight = localStorage.getItem('weight');
+            const contactNumber = localStorage.getItem('contactNumber');
+            const medicalHistory = localStorage.getItem('medicalHistory');
+            const allergies = localStorage.getItem('allergies');
+            const profilePic = localStorage.getItem('profilePic'); // Profile Picture URL
+        
+            // Displaying the fetched data
             if (fullName) {
                 document.getElementById('fullName').textContent = fullName;
             }
             if (age) {
-                document.getElementById('ageGender').textContent = `Age: ${age} | Male`;
+                document.getElementById('ageGender').textContent = `Age: ${age} | ${gender}`;
             }
             if (bloodgroup) {
                 document.getElementById('bloodGroup').textContent = `Blood Group: ${bloodgroup}`;
             }
+            if (height) {
+                document.getElementById('height').textContent = `Height: ${height} cm`;
+            }
+            if (weight) {
+                document.getElementById('weight').textContent = `Weight: ${weight} kg`;
+            }
+            if (contactNumber) {
+                document.getElementById('contactNumber').textContent = `Contact: ${contactNumber}`;
+            }
+            if (medicalHistory) {
+                document.getElementById('medicalHistory').textContent = `Medical History: ${medicalHistory}`;
+            }
+            if (allergies) {
+                document.getElementById('allergies').textContent = `Allergies: ${allergies}`;
+            }
+            
+            // Profile Picture
+            if (profilePic) {
+                document.getElementById('profilePic').src = profilePic;
+            }
         };
+        
 
 
 
