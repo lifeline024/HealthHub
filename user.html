@@ -256,6 +256,35 @@
                 padding: 8px;
             }
         }
+
+        /* Fixed Navbar */
+.navbar {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background: linear-gradient(135deg, #1e3a8a, #2563eb);
+    display: flex;
+    justify-content: space-around;
+    padding: 10px 0;
+    border-radius: 10px;
+    box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.1);
+    z-index: 1000; /* Ensure navbar stays on top */
+}
+
+.nav-item {
+    color: white;
+    text-decoration: none;
+    font-size: 1rem;
+    padding: 8px 12px;
+    border-radius: 10px;
+    transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.nav-item:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-5px);
+}
+
     </style>
 </head>
 <body>
@@ -320,7 +349,12 @@
             <a href="#" class="button">View All Appointments</a>
         </div>
     </div>
-
+<div class="navbar">
+       <a href="home.html" class="nav-item"><i class="fas fa-home"></i> Home</a>
+       
+       <a href="discover.html" class="nav-item"><i class="fas fa-compass"></i> Discover</a>
+       <a href="user.html" class="nav-item"><i class="fas fa-user"></i> Profile</a>
+   </div>
     <script>
         // Function to toggle between dark and light theme
         function toggleTheme() {
