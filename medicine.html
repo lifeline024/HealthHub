@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medicine and Disease List</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #d1f2eb, #a3e4d7, #76d7c4);
+            margin: 0;
+            padding: 20px;
+            color: #2C3E50;
+        }
+        
+        h2 {
+            text-align: center;
+            color: #2C3E50;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            border-bottom: 3px solid #3498DB;
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+        
+        .buttons {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .button {
+            background: linear-gradient(135deg, #3498DB, #2980B9);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 25px;
+            margin: 0 10px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        .content {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            transition: transform 0.3s ease;
+        }
+        .content:hover {
+            transform: scale(1.02);
+        }
+        .medicine-list, .disease-list {
+            display: none;
+        }
+        .medicine-item, .disease-item {
+            border-bottom: 1px solid #ddd;
+            padding: 15px 0;
+            transition: background-color 0.3s ease;
+        }
+        .medicine-item:hover, .disease-item:hover {
+            background-color: #f9f9f9;
+        }
+        .medicine-item:last-child, .disease-item:last-child {
+            border-bottom: none;
+        }
+        .medicine-name, .disease-name {
+            font-weight: bold;
+            color: #3498DB;
+            font-size: 1.2rem;
+        }
+        .medicine-use, .disease-use {
+            font-style: italic;
+            color: #7F8C8D;
+            margin-top: 5px;
+        }
+        .highlight {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+        .icon {
+            margin-right: 10px;
+            color: #3498DB;
+        }
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            .button {
+                padding: 8px 16px;
+                font-size: 14px;
+            }
+            .content {
+                padding: 15px;
+            }
+            .medicine-name, .disease-name {
+                font-size: 1rem;
+            }
+            .medicine-use, .disease-use {
+                font-size: 0.9rem;
+            }
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        .medicine-list, .disease-list {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .caution {
+            margin: 10px 0;
+            text-align: center;
+            font-size: 16px;
+            color: #ff5733;
+        }
+        
+    </style>
+</head>
+<body>
+
+    <h2>Medicine and Disease List</h2>
+    <div class="caution">
+        <p><strong>Caution:</strong> Before using any medicine, please consult a doctor.</p>
+    </div>
+    <div class="buttons">
+    <button class="button" onclick="showContent('medicine')"><i class="fas fa-pills icon"></i>Medicine</button>
+    <button class="button" onclick="showContent('disease')"><i class="fas fa-virus icon"></i>Disease</button>
+    </div>
+
+
+    <div class="content">
+        <!-- Medicine List -->
+        <div class="medicine-list" id="medicine-list">
+            <div class="medicine-item">
+                <div class="medicine-name"><i class="fas fa-capsules icon"></i>Paracetamol</div>
+                <div class="medicine-use">Used to reduce fever and relieve pain.</div>
+            </div>
+            <div class="medicine-item">
+                <div class="medicine-name"><i class="fas fa-capsules icon"></i>Amoxicillin</div>
+                <div class="medicine-use">An antibiotic used to treat a variety of bacterial infections.</div>
+            </div>
+            <div class="medicine-item">
+                <div class="medicine-name"><i class="fas fa-capsules icon"></i>Ibuprofen</div>
+                <div class="medicine-use">Used to reduce fever, pain, and inflammation.</div>
+            </div>
+            <div class="medicine-item">
+                <div class="medicine-name"><i class="fas fa-capsules icon"></i>Aspirin</div>
+                <div class="medicine-use">Used to relieve pain, reduce fever, and prevent blood clots.</div>
+            </div>
+            <div class="medicine-item">
+                <div class="medicine-name"><i class="fas fa-capsules icon"></i>Metformin</div>
+                <div class="medicine-use">Used to treat type 2 diabetes.</div>
+            </div>
+            <div class="medicine-item">
+                <div class="medicine-name"><i class="fas fa-capsules icon"></i>Atorvastatin</div>
+                <div class="medicine-use">Used to lower cholesterol and reduce the risk of heart disease.</div>
+            </div>
+            <div class="medicine-item">
+                <div class="medicine-name"><i class="fas fa-capsules icon"></i>Omeprazole</div>
+                <div class="medicine-use">Used to treat acid reflux and ulcers.</div>
+            </div>
+            <div class="medicine-item">
+                <div class="medicine-name"><i class="fas fa-capsules icon"></i>Losartan</div>
+                <div class="medicine-use">Used to treat high blood pressure and kidney disease.</div>
+            </div>
+            <div class="medicine-item">
+                <div class="medicine-name"><i class="fas fa-capsules icon"></i>Levothyroxine</div>
+                <div class="medicine-use">Used to treat hypothyroidism.</div>
+            </div>
+            <div class="medicine-item">
+                <div class="medicine-name"><i class="fas fa-capsules icon"></i>Prednisone</div>
+                <div class="medicine-use">A corticosteroid used to treat inflammation and autoimmune conditions.</div>
+            </div>
+            <div class="medicine-item">
+                <div class="medicine-name"><i class="fas fa-capsules icon"></i>Warfarin</div>
+                <div class="medicine-use">Used as a blood thinner to prevent blood clots.</div>
+            </div>
+            <div class="medicine-item">
+                <div class="medicine-name"><i class="fas fa-capsules icon"></i>Gabapentin</div>
+                <div class="medicine-use">Used to treat nerve pain and seizures.</div>
+            </div>
+            <div class="medicine-item">
+                <div class="medicine-name"><i class="fas fa-capsules icon"></i>Metoprolol</div>
+                <div class="medicine-use">Used to treat high blood pressure and heart conditions.</div>
+            </div>
+            <div class="medicine-item">
+                <div class="medicine-name"><i class="fas fa-capsules icon"></i>Amlodipine</div>
+                <div class="medicine-use">Used to treat high blood pressure and chest pain (angina).</div>
+            </div>
+            <div class="medicine-item">
+                <div class="medicine-name"><i class="fas fa-capsules icon"></i>Hydrochlorothiazide</div>
+                <div class="medicine-use">A diuretic used to treat high blood pressure and fluid retention.</div>
+            </div>
+            <div class="medicine-item">
+                <div class="medicine-name"><i class="fas fa-capsules icon"></i>Ciprofloxacin</div>
+                <div class="medicine-use">An antibiotic used to treat bacterial infections.</div>
+            </div>
+            <div class="medicine-item">
+                <div class="medicine-name"><i class="fas fa-capsules icon"></i>Clopidogrel</div>
+                <div class="medicine-use">Used to prevent heart attacks and strokes.</div>
+            </div>
+            <div class="medicine-item">
+                <div class="medicine-name"><i class="fas fa-capsules icon"></i>Doxycycline</div>
+                <div class="medicine-use">An antibiotic used to treat bacterial infections.</div>
+            </div>
+            <div class="medicine-item">
+                <div class="medicine-name"><i class="fas fa-capsules icon"></i>Tramadol</div>
+                <div class="medicine-use">A pain reliever used for moderate to severe pain.</div>
+            </div>
+            <div class="medicine-item">
+                <div class="medicine-name"><i class="fas fa-capsules icon"></i>Fluoxetine</div>
+                <div class="medicine-use">An antidepressant used to treat depression and anxiety disorders.</div>
+            </div>
+            <div class="medicine-item">
+                <div class="medicine-name"><i class="fas fa-capsules icon"></i>Insulin</div>
+                <div class="medicine-use">Used to manage diabetes by controlling blood sugar levels.</div>
+            </div>
+            <div class="medicine-item">
+                <div class="medicine-name"><i class="fas fa-capsules icon"></i>Montelukast</div>
+                <div class="medicine-use">Used to treat allergies and asthma.</div>
+            </div>
+            <div class="medicine-item">
+                <div class="medicine-name"><i class="fas fa-capsules icon"></i>Ranitidine</div>
+                <div class="medicine-use">Used to reduce stomach acid and treat ulcers.</div>
+            </div>
+            <div class="medicine-item">
+                <div class="medicine-name"><i class="fas fa-capsules icon"></i>Simvastatin</div>
+                <div class="medicine-use">Used to lower cholesterol levels.</div>
+            </div>
+            <div class="medicine-item">
+                <div class="medicine-name"><i class="fas fa-capsules icon"></i>Diazepam</div>
+                <div class="medicine-use">Used to treat anxiety, muscle spasms, and seizures.</div>
+            </div>
+            <div class="medicine-item">
+                <div class="medicine-name"><i class="fas fa-capsules icon"></i>Furosemide</div>
+                <div class="medicine-use">A diuretic used to treat fluid retention and high blood pressure.</div>
+            </div>
+            <div class="medicine-item">
+                <div class="medicine-name"><i class="fas fa-capsules icon"></i>Lisinopril</div>
+                <div class="medicine-use">Used to treat high blood pressure and heart failure.</div>
+            </div>
+            <div class="medicine-item">
+                <div class="medicine-name"><i class="fas fa-capsules icon"></i>Hydrocortisone</div>
+                <div class="medicine-use">Used to treat inflammation, allergies, and skin conditions.</div>
+            </div>
+            <div class="medicine-item">
+                <div class="medicine-name"><i class="fas fa-capsules icon"></i>Alprazolam</div>
+                <div class="medicine-use">Used to treat anxiety and panic disorders.</div>
+            </div>
+        </div>
+        
+
+        <!-- Disease List -->
+        <div class="disease-list" id="disease-list">
+            <div class="disease-item">
+                <div class="disease-name"><i class="fas fa-biohazard icon"></i>Malaria</div>
+                <div class="disease-use">Caused by a mosquito bite, treated with <span class="highlight">Chloroquine</span> and <span class="highlight">Artemisinin</span>.</div>
+            </div>
+            <div class="disease-item">
+                <div class="disease-name"><i class="fas fa-biohazard icon"></i>Diabetes</div>
+                <div class="disease-use">Caused by insulin resistance or insufficient insulin production, treated with <span class="highlight">Metformin</span>.</div>
+            </div>
+            <div class="disease-item">
+                <div class="disease-name"><i class="fas fa-biohazard icon"></i>Hypertension</div>
+                <div class="disease-use">Caused by high blood pressure, treated with <span class="highlight">Amlodipine</span> and <span class="highlight">Losartan</span>.</div>
+            </div>
+            <div class="disease-item">
+                <div class="disease-name"><i class="fas fa-biohazard icon"></i>Asthma</div>
+                <div class="disease-use">Chronic inflammation of airways, treated with <span class="highlight">Montelukast</span> and <span class="highlight">Salbutamol</span>.</div>
+            </div>
+            <div class="disease-item">
+                <div class="disease-name"><i class="fas fa-biohazard icon"></i>Pneumonia</div>
+                <div class="disease-use">Lung infection, treated with <span class="highlight">Amoxicillin</span> and <span class="highlight">Azithromycin</span>.</div>
+            </div>
+            <div class="disease-item">
+                <div class="disease-name"><i class="fas fa-biohazard icon"></i>Tuberculosis</div>
+                <div class="disease-use">Bacterial infection, treated with <span class="highlight">Rifampin</span> and <span class="highlight">Isoniazid</span>.</div>
+            </div>
+            <div class="disease-item">
+                <div class="disease-name"><i class="fas fa-biohazard icon"></i>COVID-19</div>
+                <div class="disease-use">Viral infection, managed with <span class="highlight">Remdesivir</span> and <span class="highlight">Dexamethasone</span>.</div>
+            </div>
+            <div class="disease-item">
+                <div class="disease-name"><i class="fas fa-biohazard icon"></i>Common Cold</div>
+                <div class="disease-use">Viral infection, managed with <span class="highlight">Paracetamol</span> and <span class="highlight">Antihistamines</span>.</div>
+            </div>
+            <div class="disease-item">
+                <div class="disease-name"><i class="fas fa-biohazard icon"></i>Influenza (Flu)</div>
+                <div class="disease-use">Viral infection, treated with <span class="highlight">Oseltamivir</span> and supportive care.</div>
+            </div>
+            <div class="disease-item">
+                <div class="disease-name"><i class="fas fa-biohazard icon"></i>HIV/AIDS</div>
+                <div class="disease-use">Viral infection, treated with <span class="highlight">Antiretroviral Therapy (ART)</span>.</div>
+            </div>
+            <div class="disease-item">
+                <div class="disease-name"><i class="fas fa-biohazard icon"></i>Hepatitis B</div>
+                <div class="disease-use">Liver infection, treated with <span class="highlight">Tenofovir</span> and <span class="highlight">Entecavir</span>.</div>
+            </div>
+            <div class="disease-item">
+                <div class="disease-name"><i class="fas fa-biohazard icon"></i>Hepatitis C</div>
+                <div class="disease-use">Liver infection, treated with <span class="highlight">Sofosbuvir</span> and <span class="highlight">Ledipasvir</span>.</div>
+            </div>
+            <div class="disease-item">
+                <div class="disease-name"><i class="fas fa-biohazard icon"></i>Arthritis</div>
+                <div class="disease-use">Joint inflammation, treated with <span class="highlight">Ibuprofen</span> and <span class="highlight">Methotrexate</span>.</div>
+            </div>
+            <div class="disease-item">
+                <div class="disease-name"><i class="fas fa-biohazard icon"></i>Gastritis</div>
+                <div class="disease-use">Stomach inflammation, treated with <span class="highlight">Omeprazole</span> and <span class="highlight">Ranitidine</span>.</div>
+            </div>
+            <div class="disease-item">
+                <div class="disease-name"><i class="fas fa-biohazard icon"></i>Gout</div>
+                <div class="disease-use">Joint pain due to uric acid, treated with <span class="highlight">Allopurinol</span> and <span class="highlight">Colchicine</span>.</div>
+            </div>
+            <div class="disease-item">
+                <div class="disease-name"><i class="fas fa-biohazard icon"></i>Epilepsy</div>
+                <div class="disease-use">Seizure disorder, treated with <span class="highlight">Gabapentin</span> and <span class="highlight">Carbamazepine</span>.</div>
+            </div>
+            <div class="disease-item">
+                <div class="disease-name"><i class="fas fa-biohazard icon"></i>Alzheimer's Disease</div>
+                <div class="disease-use">Neurodegenerative disorder, managed with <span class="highlight">Donepezil</span> and <span class="highlight">Memantine</span>.</div>
+            </div>
+            <div class="disease-item">
+                <div class="disease-name"><i class="fas fa-biohazard icon"></i>Depression</div>
+                <div class="disease-use">Mental health disorder, treated with <span class="highlight">Fluoxetine</span> and <span class="highlight">Sertraline</span>.</div>
+            </div>
+            <div class="disease-item">
+                <div class="disease-name"><i class="fas fa-biohazard icon"></i>Anemia</div>
+                <div class="disease-use">Iron deficiency, treated with <span class="highlight">Iron supplements</span> and <span class="highlight">Folic acid</span>.</div>
+            </div>
+            <div class="disease-item">
+                <div class="disease-name"><i class="fas fa-biohazard icon"></i>Kidney Stones</div>
+                <div class="disease-use">Mineral buildup, treated with <span class="highlight">Pain relievers</span> and <span class="highlight">Hydration therapy</span>.</div>
+            </div>
+            <div class="disease-item">
+                <div class="disease-name"><i class="fas fa-biohazard icon"></i>UTI (Urinary Tract Infection)</div>
+                <div class="disease-use">Bacterial infection, treated with <span class="highlight">Ciprofloxacin</span> and <span class="highlight">Nitrofurantoin</span>.</div>
+            </div>
+        </div>        
+    </div>
+
+    <script>
+        function showContent(type) {
+            if (type === 'medicine') {
+                document.getElementById('medicine-list').style.display = 'block';
+                document.getElementById('disease-list').style.display = 'none';
+            } else if (type === 'disease') {
+                document.getElementById('medicine-list').style.display = 'none';
+                document.getElementById('disease-list').style.display = 'block';
+            }
+        }
+    </script>
+
+</body>
+</html>

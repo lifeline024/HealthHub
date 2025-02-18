@@ -267,104 +267,6 @@
             transform: translateY(-5px);
         }
 
-
-
-               /* Floating Help Button */
-               .fab-container {
-                position: fixed;
-                bottom: 20px;
-                right: 20px;
-                z-index: 1000;
-            }
-    
-            .fab-button {
-                width: 60px;
-                height: 60px;
-                background-color: #fff;
-                border: none;
-                border-radius: 50%;
-                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-                cursor: pointer;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                transition: transform 0.3s ease, background-color 0.3s ease;
-            }
-    
-            .fab-button:hover {
-                transform: scale(1.1);
-            }
-    
-            /* Add avatar icon */
-            .assistant-icon {
-                width: 100%;
-                height: 100%;
-                border-radius: 50%;
-                object-fit: cover;
-            }
-    
-            /* Toolbar */
-            .toolbar {
-                position: absolute;
-                bottom: 80px;
-                right: 0;
-                display: flex;
-                flex-direction: column;
-                gap: 10px;
-                opacity: 0;
-                visibility: hidden;
-                transition: opacity 0.3s ease, visibility 0.3s ease;
-            }
-    
-            .fab-container.active .toolbar {
-                opacity: 1;
-                visibility: visible;
-            }
-    
-            .toolbar a {
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                width: 50px;
-                height: 50px;
-                border-radius: 50%;
-                background-color: #0078d7;
-                color: #fff;
-                text-decoration: none;
-                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-                transition: background-color 0.3s ease, transform 0.3s ease;
-            }
-    
-            .toolbar a:hover {
-                background-color: #005bb5;
-                transform: scale(1.1);
-            }
-    
-            .toolbar a i {
-                font-size: 20px;
-            }
-    
-            /* Tooltip */
-            .toolbar a span {
-                position: absolute;
-                right: 60px;
-                background-color: #333;
-                color: #fff;
-                font-size: 12px;
-                padding: 5px 10px;
-                border-radius: 5px;
-                white-space: nowrap;
-                visibility: hidden;
-                opacity: 0;
-                transform: translateX(-10px);
-                transition: opacity 0.3s ease, transform 0.3s ease;
-            }
-    
-            .toolbar a:hover span {
-                visibility: visible;
-                opacity: 1;
-                transform: translateX(0);
-            }
     </style>
 </head>
 <body>
@@ -472,8 +374,11 @@
 
     <!-- Discover Your Health Journey -->
     <section class="discover-health-journey">
-        <h1>DISCOVER YOUR HEALTH JOURNEY</h1>  
+        <h1>
+            <a href="medicine.html" class="health-link">Click Here</a> for Basic Medicine information
+        </h1>  
     </section>
+    
 
 
       <!-- Bottom Navigation -->
@@ -482,39 +387,5 @@
         <a href="discover.html" class="nav-item"><i class="fas fa-compass"></i> Discover</a>
         <a href="user.html" class="nav-item"><i class="fas fa-user"></i> Profile</a>
     </div>
-
-    
-         <!-- Call-to-Action Section -->
-         <div class="fab-container">
-            <!-- Main FAB with Assistant Avatar -->
-            <button class="fab-button">
-                <img src="https://img.icons8.com/?size=100&id=13540&format=png&color=000000" alt="Assistant" class="assistant-icon">
-            </button>
-    
-            <!-- Toolbar -->
-            <div class="toolbar">
-                <a href="https://wa.me/+918083030197" target="_blank">
-                    <i class="fab fa-whatsapp"></i>
-                    <span>WhatsApp</span>
-                </a>
-                <a href="https://t.me/LearningPoint024" target="_blank">
-                    <i class="fab fa-telegram"></i>
-                    <span>Telegram</span>
-                </a>
-                <a href="mailto:rajaayush931@gmail.com" target="_blank">
-                    <i class="fas fa-envelope"></i>
-                    <span>Email</span>
-                </a>
-            </div>
-
-    <script>
-        // Toggle FAB Toolbar
- const fabButton = document.querySelector('.fab-button');
- const fabContainer = document.querySelector('.fab-container');
-
- fabButton.addEventListener('click', () => {
-     fabContainer.classList.toggle('active');
- });
-    </script>
 </body>
 </html>
