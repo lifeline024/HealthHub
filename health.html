@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accordion Dropdown</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff; /* Soft light background */
+            color: #333;
+        }
+
+        header {
+            text-align: center;
+            padding: 10px 20px;
+            background-color: #2c81a5; /* Light blue background */
+            color: rgb(255, 255, 255);
+            margin-bottom: 20px;
+            border-radius: 0 0 10px 10px;
+        }
+
+        header h1 {
+            font-size: 36px;
+            margin: 0;
+        }
+
+        header p {
+            font-size: 18px;
+            margin-top: 10px;
+        }
+
+        .accordion {
+            width: 100%;
+            max-width: 800px;
+            margin: auto;
+            border-radius: 8px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        
+
+        .accordion-header {
+            background-color: #2c7ca1; /* Light blue */
+            color: rgb(255, 255, 255);
+            padding: 20px;
+            cursor: pointer;
+            font-size: 20px;
+            font-weight: bold;
+            text-align: left;
+            width: 100%;
+            outline: none;
+            border: none;
+            transition: background-color 0.3s, color 0.3s;
+            border-radius: 20px;
+            margin-top: 10px;
+        }
+
+        .accordion-header:hover {
+            background-color: #74bfe4; /* Slightly darker blue */
+        }
+
+        .accordion-content {
+            display: none;
+            padding: 20px;
+            background-color: #f1f9ff; /* Very light blue background */
+            font-size: 16px;
+            border-top: 1px solid #d1e7ff; /* Light blue border */
+            line-height: 1.6;
+        }
+
+        .accordion-content h4 {
+            margin-top: 0;
+            font-size: 18px;
+        }
+
+        .accordion-content ul {
+            margin-top: 10px;
+        }
+
+        .accordion-content ul li {
+            margin-bottom: 8px;
+        }
+
+        .active + .accordion-content {
+            display: block;
+        }
+
+        .accordion-item:last-child {
+            border-bottom: none;
+        }
+
+        .accordion-item:hover .accordion-header {
+            background-color: #73b5cf; /* Slightly darker blue on hover */
+        }
+    </style>
+</head>
+<body>
+<header>
+    <h1>Female's Health Issues</h1>
+    <p>Solutions and information to help with common female health problems</p>
+    
+</header>
+
+<div class="accordion">
+    <div class="accordion-item">
+        <button class="accordion-header">Bone and Joint Problems</button>
+        <div class="accordion-content">
+            <p>All women, especially older or working women, may face bone and joint issues.</p>
+            <h4>Solutions:</h4>
+            <ul>
+                <li>Exercise: Low-impact exercises like swimming, walking, or yoga help maintain joint mobility.</li>
+                <li>Diet: Ensure calcium and vitamin D intake for better bone health.</li>
+                <li>Supplements: Glucosamine and chondroitin support cartilage health.</li>
+                <li>Physical Therapy: Personalized therapy can alleviate pain and improve strength.</li>
+                <li>Medications: Over-the-counter pain relief (ibuprofen or acetaminophen) may help.</li>
+                <li>Surgery: In severe cases, joint replacement might be necessary.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="accordion-item">
+        <button class="accordion-header">Migraines</button>
+        <div class="accordion-content">
+            <p>Migraines are intense headaches often with nausea and light sensitivity.</p>
+            <h4>Solutions:</h4>
+            <ul>
+                <li>Medication: Use pain relievers or preventive medications for chronic cases.</li>
+                <li>Avoid Triggers: Avoid foods like caffeine, chocolate, and alcohol.</li>
+                <li>Stress Management: Meditation or yoga can help manage stress.</li>
+                <li>Hydration: Keep hydrated to reduce migraine occurrences.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="accordion-item">
+        <button class="accordion-header">Skin and Hair Problems</button>
+        <div class="accordion-content">
+            <p>Conditions like acne, hair loss, and dandruff are common skin and hair issues.</p>
+            <h4>Solutions:</h4>
+            <ul>
+                <li>Skincare: A routine of cleansing, moisturizing, and sunscreen.</li>
+                <li>Hair Care: Gentle shampoos and avoiding excessive styling can help.</li>
+                <li>Diet: Vitamins E, C, and zinc promote healthy skin and hair.</li>
+                <li>Hydration: Drink plenty of water for skin and hair health.</li>
+                <li>Topical Treatments: Use prescribed treatments for specific skin conditions.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="accordion-item">
+        <button class="accordion-header">Gastrointestinal Issues</button>
+        <div class="accordion-content">
+            <p>Gastrointestinal problems like IBS, acid reflux, and bloating can affect digestion.</p>
+            <h4>Solutions:</h4>
+            <ul>
+                <li>Diet: Eat smaller meals with more fiber and avoid spicy or fatty foods.</li>
+                <li>Probiotics: Supplements or fermented foods support gut health.</li>
+                <li>Hydration: Drink water to help digestion and prevent constipation.</li>
+                <li>Stress Reduction: Manage stress with relaxation techniques.</li>
+                <li>Medications: Antacids or other treatments may be needed for certain conditions.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="accordion-item">
+        <button class="accordion-header">Pregnancy-Related Complications</button>
+        <div class="accordion-content">
+            <p>Pregnancy-related complications can affect both mother and baby.</p>
+            <h4>Solutions:</h4>
+            <ul>
+                <li>Prenatal Care: Regular doctor visits to monitor health.</li>
+                <li>Nutrition: Include folic acid, calcium, and iron supplements.</li>
+                <li>Rest: Adequate rest and stress management are essential.</li>
+                <li>Hydration: Stay hydrated for healthy amniotic fluid levels.</li>
+                <li>Medications: Consult your doctor for medications to address complications.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="accordion-item">
+        <button class="accordion-header">Irregular Periods</button>
+        <div class="accordion-content">
+            <p>Irregular periods are often caused by hormonal imbalances or other factors.</p>
+            <h4>Solutions:</h4>
+            <ul>
+                <li>Lifestyle Changes: Regular exercise and stress management help balance hormones.</li>
+                <li>Diet: A balanced intake of vitamins and minerals, especially magnesium and vitamin D.</li>
+                <li>Medication: Hormonal treatments like birth control pills may regulate periods.</li>
+                <li>Herbal Remedies: Consult your doctor before trying herbal remedies like chasteberry.</li>
+                <li>Monitoring: Track your menstrual cycle to identify patterns or triggers.</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.querySelectorAll(".accordion-header").forEach(button => {
+        button.addEventListener("click", () => {
+            // Close all open sections before opening the clicked one
+            document.querySelectorAll(".accordion-header").forEach(btn => {
+                if (btn !== button) {
+                    btn.classList.remove("active");
+                    btn.nextElementSibling.style.display = "none";
+                }
+            });
+
+            // Toggle current section
+            button.classList.toggle("active");
+            let content = button.nextElementSibling;
+            content.style.display = content.style.display === "block" ? "none" : "block";
+        });
+    });
+</script>
+
+</body>
+</html>
