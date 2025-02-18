@@ -131,7 +131,7 @@
 <body>
     <div class="form-container">
         <h2>User Details</h2>
-        <form id="userDetailsForm">
+        <form action="process.php" method="post">
             <div class="question active" id="q1">
                 <label for="fullName">Full Name:</label>
                 <input type="text" id="fullName" placeholder="Enter your full name" required><br><br>
@@ -145,42 +145,90 @@
             <div class="question" id="q3">
                 <label for="bloodgroup">Blood Group:</label>
                 <input type="text" id="bloodgroup" placeholder="Enter your Blood Group" required><br><br>
+                <button type="button" class="btn-next" onclick="nextQuestion(3)">Next</button>
+            </div>
+            <div class="question" id="q4">
+                <label for="gender">Gender:</label>
+                <select id="gender" required>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="other">Other</option>
+                </select><br><br>
+                <button type="button" class="btn-next" onclick="nextQuestion(4)">Next</button>
+            </div>
+            <div class="question" id="q5">
+                <label for="height">Height (cm):</label>
+                <input type="number" id="height" placeholder="Enter your height in cm" required><br><br>
+                <button type="button" class="btn-next" onclick="nextQuestion(5)">Next</button>
+            </div>
+            <div class="question" id="q6">
+                <label for="weight">Weight (kg):</label>
+                <input type="number" id="weight" placeholder="Enter your weight in kg" required><br><br>
+                <button type="button" class="btn-next" onclick="nextQuestion(6)">Next</button>
+            </div>
+            <div class="question" id="q7">
+                <label for="contactNumber">Contact Number:</label>
+                <input type="tel" id="contactNumber" placeholder="Enter your contact number" required><br><br>
+                <button type="button" class="btn-next" onclick="nextQuestion(7)">Next</button>
+            </div>
+            <div class="question" id="q8">
+                <label for="medicalHistory">Do you have any previous medical history?</label><br>
+                <textarea id="medicalHistory" placeholder="Enter any medical conditions you have or had" rows="3"></textarea><br><br>
+                <button type="button" class="btn-next" onclick="nextQuestion(8)">Next</button>
+            </div>
+            <div class="question" id="q9">
+                <label for="allergies">Do you have any allergies?</label><br>
+                <textarea id="allergies" placeholder="Enter any allergies you have" rows="3"></textarea><br><br>
                 <button type="button" class="btn-next" onclick="submitForm()">Submit</button>
             </div>
         </form>
     </div>
-
+    
     <script>
         let currentQuestion = 1;
-
+    
         // Check if user data already exists
-        if (localStorage.getItem('fullName') && localStorage.getItem('age') && localStorage.getItem('bloodgroup')) {
-            window.location.href = 'user.html'; // Redirect to main page if data exists
-        }
-
+       // if (localStorage.getItem('fullName') && localStorage.getItem('age') && localStorage.getItem('bloodgroup')) {
+       //     window.location.href = 'user.html'; // Redirect to main page if data exists
+        // }
+    
         // Show next question
         function nextQuestion(questionNumber) {
             const current = document.getElementById(`q${questionNumber}`);
             const next = document.getElementById(`q${questionNumber + 1}`);
-
+    
             // Save the current question data
             if (questionNumber === 1) {
                 localStorage.setItem('fullName', document.getElementById('fullName').value);
             } else if (questionNumber === 2) {
                 localStorage.setItem('age', document.getElementById('age').value);
+            } else if (questionNumber === 3) {
+                localStorage.setItem('bloodgroup', document.getElementById('bloodgroup').value);
+            } else if (questionNumber === 4) {
+                localStorage.setItem('gender', document.getElementById('gender').value);
+            } else if (questionNumber === 5) {
+                localStorage.setItem('height', document.getElementById('height').value);
+            } else if (questionNumber === 6) {
+                localStorage.setItem('weight', document.getElementById('weight').value);
+            } else if (questionNumber === 7) {
+                localStorage.setItem('contactNumber', document.getElementById('contactNumber').value);
+            } else if (questionNumber === 8) {
+                localStorage.setItem('medicalHistory', document.getElementById('medicalHistory').value);
+            } else if (questionNumber === 9) {
+                localStorage.setItem('allergies', document.getElementById('allergies').value);
             }
-
+    
             // Hide current question and show next one
             current.classList.remove('active');
             if (next) next.classList.add('active');
         }
-
+    
         // Submit form data
         function submitForm() {
-            localStorage.setItem('bloodgroup', document.getElementById('bloodgroup').value);
             alert('Information saved!');
             window.location.href = 'user.html';  // Redirect to main page after submission
         }
     </script>
+    
 </body>
 </html>
