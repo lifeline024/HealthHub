@@ -351,7 +351,21 @@
             document.getElementById('forgotPassword-container').style.display = 'none';
             document.getElementById('login-container').style.display = 'block';
         });    
-       history.replaceState(null, null, "home.html");
+     //   history.replaceState(null, null, "admin.html");//
+
+     document.addEventListener("DOMContentLoaded", function () {
+        // Check if user is already logged in
+        if (localStorage.getItem("loggedIn") === "true") {
+            window.location.href = "home.html"; // Replace with your homepage/dashboard
+        }
+    });
+    
+    function login() {
+        // Assuming login is successful
+        localStorage.setItem("loggedIn", "true"); 
+        window.location.href = "home.html"; // Redirect to dashboard after login
+    }
+    
     </script>
 </body>
 </html>
