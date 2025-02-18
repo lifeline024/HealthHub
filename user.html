@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profile</title>
+    <title>Health Profile</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         /* Base styles */
         body {
@@ -256,6 +257,38 @@
                 padding: 8px;
             }
         }
+
+        
+/* Fixed Navbar */
+.navbar {
+ position: fixed;
+ bottom: 0;
+ left: 50%;
+ transform: translateX(-50%);
+ width: 100%;  /* पूरे viewport पर अच्छा दिखे */
+ background: linear-gradient(135deg, #1e3a8a, #2563eb);
+ display: flex;
+ justify-content: space-around;
+ 
+ padding: 10px 0;
+ border-radius: 15px 15px 0 0;
+ box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.2);
+ z-index: 1000; /* Ensure navbar stays on top */
+}
+
+.nav-item {
+ color: white;
+ text-decoration: none;
+ font-size: 1rem;
+ padding: 10px 15px;
+ border-radius: 10px;
+ transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.nav-item:hover {
+ background: rgba(255, 255, 255, 0.2);
+ transform: scale(1.1);
+}
     </style>
 </head>
 <body>
@@ -269,7 +302,9 @@
                     <p id="bloodGroup">Blood Group: B+</p>
                 </div>
             </div>
-            <!-- <input type="file" id="imageUpload" accept="image/*"> -->
+            <button onclick="logout()" style="background-color: #e74c3c; color: white; border: none; padding: 10px 15px; border-radius: 5px; font-size: 16px; cursor: pointer; transition: background-color 0.3s;">
+                Logout
+            </button>
         </div>
         
         <div class="card">
@@ -314,7 +349,23 @@
         </div>
     </div>
 
+        <!-- Fixed Navbar -->
+    <!-- Fixed Navbar -->
+    <div class="navbar">
+        <a href="home.html" class="nav-item"><i class="fas fa-home"></i> Home</a>
+        <a href="discover.html" class="nav-item"><i class="fas fa-compass"></i> Discover</a>
+        <a href="user-info.html" class="nav-item"><i class="fas fa-user"></i> Profile</a>
+    </div>
     <script>
+
+        function logout() {
+            // Clear all stored data
+            localStorage.clear();
+    
+            // Redirect to the login page (change "index.html" if needed)
+            window.location.href = "index.html";
+        }
+        
         // Function to toggle between dark and light theme
         function toggleTheme() {
             document.body.classList.toggle('dark-theme');
