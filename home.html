@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health Monitoring</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<style>
+    /* General Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #f4f6f9, #e2e8f0);
+    color: #333;
+    line-height: 1.6;
+    overflow-x: hidden;
+    padding-bottom: 70px; /* Add padding to prevent navbar overlap */
+}
+
+/* Header Section */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(135deg, #1e3a8a, #2563eb);
+    color: white;
+    padding: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    flex-wrap: wrap;
+}
+
+.header .profile {
+    display: flex;
+    align-items: center;
+}
+
+.header .profile img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    margin-right: 15px;
+    border: 2px solid #fff;
+    transition: transform 0.3s ease;
+}
+
+.header .profile img:hover {
+    transform: scale(1.1);
+}
+
+.header .profile h2 {
+    font-size: 1.3rem;
+    font-weight: 500;
+}
+
+.header .tit h1 {
+    font-size: 1.8rem;
+    margin: 10px 0;
+    font-weight: bold;
+    animation: fadeIn 1.5s ease-in-out;
+    text-align: center;
+}
+
+.header .tit h3 {
+    font-size: 1rem;
+    font-weight: 300;
+    animation: fadeIn 2s ease-in-out;
+    text-align: center;
+}
+
+.header .navhe {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 15px;
+}
+
+.header .navhe a {
+    color: white;
+    font-size: 1.4rem;
+    margin: 0 10px;
+    text-decoration: none;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.header .navhe a:hover {
+    color: #fbbf24;
+    transform: translateY(-5px);
+}
+
+/* Image Section */
+.image img {
+    width: 100%;
+    max-width: 100%;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+}
+
+.image img:hover {
+    transform: scale(1.02);
+}
+
+/* Containers */
+.container1, .container2 {
+    padding: 30px 20px;
+    background: white;
+    margin: 20px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.container1:hover, .container2:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.container1 h1, .container2 h1 {
+    font-size: 1.5rem;
+    color: #1e3a8a;
+    margin-bottom: 15px;
+}
+
+.container1 p, .container2 p {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+.bmi-container {
+    text-align: center;
+    background: white;
+    padding: 30px 20px;
+    margin: 25px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.bmi-container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.bmi-container h1 {
+    font-size: 1.5rem;
+    color: #1e3a8a;
+    margin-bottom: 20px;
+}
+
+.bmi-container input {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    font-size: 1rem;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    transition: border-color 0.3s ease;
+}
+
+.bmi-container input:focus {
+    border-color: #1e3a8a;
+    outline: none;
+}
+
+.bmi-container button {
+    padding: 12px 24px;
+    background: linear-gradient(135deg, #1e3a8a, #2563eb);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.bmi-container button:hover {
+    background: linear-gradient(135deg, #2563eb, #1e3a8a);
+    transform: scale(1.05);
+}
+
+.bmi-container p {
+    font-size: 1rem;
+    color: #1e3a8a;
+    font-weight: 500;
+}
+
+/* Fixed Navbar */
+.navbar {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background: linear-gradient(135deg, #1e3a8a, #2563eb);
+    display: flex;
+    justify-content: space-around;
+    padding: 10px 0;
+    border-radius: 10px;
+    box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.1);
+    z-index: 1000; /* Ensure navbar stays on top */
+}
+
+.nav-item {
+    color: white;
+    text-decoration: none;
+    font-size: 1rem;
+    padding: 8px 12px;
+    border-radius: 10px;
+    transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.nav-item:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-5px);
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Responsive Styles for Mobile */
+@media (max-width: 480px) {
+    body {
+        padding-bottom: 60px; /* Adjust padding for navbar */
+    }
+
+    .header {
+        padding: 15px;
+    }
+
+    .header .profile img {
+        width: 50px;
+        height: 50px;
+    }
+
+    .header .profile h2 {
+        font-size: 1.2rem;
+    }
+
+    .header .tit h1 {
+        font-size: 1.5rem;
+    }
+
+    .header .tit h3 {
+        font-size: 0.9rem;
+    }
+
+    .header .navhe a {
+        font-size: 1.2rem;
+    }
+
+    .container1, .container2, .bmi-container {
+        margin: 15px;
+        padding: 20px;
+    }
+
+    .container1 h1, .container2 h1, .bmi-container h1 {
+        font-size: 1.3rem;
+    }
+
+    .container1 p, .container2 p, .bmi-container p {
+        font-size: 0.9rem;
+    }
+
+    .bmi-container input {
+        padding: 10px;
+    }
+
+    .bmi-container button {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+    }
+
+    .navbar {
+        padding: 8px 0;
+    }
+
+    .nav-item {
+        font-size: 0.9rem;
+        padding: 6px 10px;
+    }
+}
+.quote {
+    background: linear-gradient(to right, #6a11cb, #2575fc); /* Gradient background */
+    border-radius: 15px; /* Curved corners */
+    padding: 20px 30px; /* Space inside the quote box */
+    margin: 20px 0; /* Space around the quote box */
+    color: #fff; /* White text */
+    font-family: 'Roboto', sans-serif; /* Font style */
+    font-size: 1.2em; /* Slightly larger font */
+    text-align: center; /* Center the text */
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2); /* Soft shadow around the box */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover transition */
+}
+
+.quote p {
+    margin: 0;
+    font-style: italic; /* Italicize the quote */
+}
+
+.quote:hover {
+    transform: translateY(-10px); /* Lift the box up on hover */
+    box-shadow: 0px 8px 25px rgba(0, 0, 0, 0.3); /* Stronger shadow on hover */
+}
+
+.quote p:hover {
+    color: #ffd700; /* Change text color on hover */
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.6); /* Glow effect on hover */
+}
+/* Styling the icon */
+.fas.fa-user-circle {
+    margin-right: 10px;
+}
+
+/* Hover effects */
+.fas.fa-user-circle:hover {
+    color: #ffffff; /* Change icon color to white on hover */
+    background-color: #4CAF50; /* Change background to green on hover */
+    transform: scale(1.1); /* Slightly enlarge the icon */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* Enhance shadow on hover */
+}
+/* Floating Help Button */
+.fab-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+
+.fab-button {
+    width: 60px;
+    height: 60px;
+    background-color: #fff;
+    border: none;
+    border-radius: 50%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.fab-button:hover {
+    transform: scale(1.1);
+}
+
+/* Add avatar icon */
+.assistant-icon {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/* Toolbar */
+.toolbar {
+    position: absolute;
+    bottom: 80px;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.fab-container.active .toolbar {
+    opacity: 1;
+    visibility: visible;
+}
+
+.toolbar a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #0078d7;
+    color: #fff;
+    text-decoration: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.toolbar a:hover {
+    background-color: #005bb5;
+    transform: scale(1.1);
+}
+
+.toolbar a i {
+    font-size: 20px;
+}
+
+/* Tooltip */
+.toolbar a span {
+    position: absolute;
+    right: 60px;
+    background-color: #333;
+    color: #fff;
+    font-size: 12px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    white-space: nowrap;
+    visibility: hidden;
+    opacity: 0;
+    transform: translateX(-10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.toolbar a:hover span {
+    visibility: visible;
+    opacity: 1;
+    transform: translateX(0);
+}
+
+</style>
+<body>
+   <div class="header">
+        <div class="profile">
+            <button onclick="window.location.href='user.html'" class="profile-btn">
+                <i class="fas fa-user-circle"></i>
+            </button>
+            <h2>Welcome...</h2>
+        </div>
+   </div>
+
+   <!-- Hero Section with Image and Quote -->
+   <div class="hero">
+       <div class="image">
+           <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHmXrRrfH9r3uF6quKIgaLmLdLAvUee4HSLA&s.jpg" alt="Health Image">
+       </div>
+       <div class="quote">
+           <p>"Health is not about the weight you lose, but the life you gain."</p>
+       </div>
+   </div>
+
+   <!-- Healthcare Services Section -->
+   <div class="container1">
+       <h1>Healthcare Services</h1>
+       <p>Access services from trusted healthcare providers seamlessly.</p>
+       <div class="services">
+           <div class="service-item">
+               <i class="fas fa-stethoscope"></i>
+               <h3>Consultation</h3>
+               <p>Talk to certified doctors online.</p>
+           </div>
+           <div class="service-item">
+               <i class="fas fa-pills"></i>
+               <h3>Medicines</h3>
+               <p>Order medicines delivered to your doorstep.</p>
+           </div>
+           <div class="service-item">
+               <i class="fas fa-heartbeat"></i>
+               <h3>Health Checkups</h3>
+               <p>Book full body checkups at affordable prices.</p>
+           </div>
+       </div>
+   </div>
+
+   <!-- Health Tips Section -->
+   <div class="container2">
+       <h1>Health Tips</h1>
+       <p>Quick and amazing tips for health.</p>
+       <div class="tips">
+           <div class="tip-item">
+               <i class="fas fa-water"></i>
+               <h3>Stay Hydrated</h3>
+               <p>Drink at least 8 glasses of water daily.</p>
+           </div>
+           <div class="tip-item">
+               <i class="fas fa-apple-alt"></i>
+               <h3>Eat Healthy</h3>
+               <p>Include fruits and vegetables in your diet.</p>
+           </div>
+           <div class="tip-item">
+               <i class="fas fa-running"></i>
+               <h3>Exercise Daily</h3>
+               <p>30 minutes of exercise can boost your health.</p>
+           </div>
+       </div>
+   </div>
+
+   <!-- BMI Calculator -->
+   <div class="bmi-container">
+       <h1>BMI Calculator</h1>
+       <input type="number" id="weight" placeholder="Enter weight (kg)">
+       <input type="number" id="height" placeholder="Enter height (m)">
+       <button onclick="calculateBMI()">Calculate BMI</button>
+       <p id="bmi-result"></p>
+   </div>
+
+   <!-- Fixed Navbar -->
+   <div class="navbar">
+       <a href="home.html" class="nav-item"><i class="fas fa-home"></i> Home</a>
+       
+       <a href="discover.html" class="nav-item"><i class="fas fa-compass"></i> Discover</a>
+       <a href="user-info.html" class="nav-item"><i class="fas fa-user"></i> Profile</a>
+   </div>
+
+   <!-- Footer -->
+
+
+   <style>
+        .profile-btn {
+            background: none;
+            border: none;
+            font-size: 2rem;
+            color: white;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .profile-btn:hover {
+            transform: scale(1.1);
+        }
+   </style>
+<script>
+    // Slideshow for the first container (Healthcare Services)
+let slideIndex = 0;
+showSlides();
+
+// Slideshow for the second container (Health Tips)
+let slideIndex2 = 0;
+showSlides2();
+
+// Function to control the first slideshow
+function showSlides() {
+    let slides = document.getElementsByClassName("slide1"); // Use unique class name for first slideshow
+    for (let i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none"; // Hide all slides
+    }
+    slideIndex++;
+    if (slideIndex > slides.length) { slideIndex = 1; } // Reset to the first slide if we reach the last one
+    slides[slideIndex - 1].style.display = "block"; // Show the current slide
+    setTimeout(showSlides, 3000); // Change slide every 3 seconds
+}
+
+// Function to control the second slideshow
+function showSlides2() {
+    let slides2 = document.getElementsByClassName("slide2"); // Use unique class name for second slideshow
+    for (let i = 0; i < slides2.length; i++) {
+        slides2[i].style.display = "none"; // Hide all slides
+    }
+    slideIndex2++;
+    if (slideIndex2 > slides2.length) { slideIndex2 = 1; } // Reset to the first slide if we reach the last one
+    slides2[slideIndex2 - 1].style.display = "block"; // Show the current slide
+    setTimeout(showSlides2, 3000); // Change slide every 3 seconds
+}
+
+// Toggle FAB Toolbar
+const fabButton = document.querySelector('.fab-button');
+const fabContainer = document.querySelector('.fab-container');
+
+fabButton.addEventListener('click', () => {
+    fabContainer.classList.toggle('active');
+});
+
+function calculateBMI() {
+    // Get input values
+    const weight = parseFloat(document.getElementById('weight').value);
+    const height = parseFloat(document.getElementById('height').value);
+
+    // Validate inputs
+    if (isNaN(weight) || isNaN(height) || weight <= 0 || height <= 0) {
+        alert("Please enter valid weight and height.");
+        return;
+    }
+
+    // Convert height from cm to meters
+    const heightInMeters = height / 100;
+
+    // Calculate BMI using the formula
+    const bmi = (weight / (heightInMeters * heightInMeters)).toFixed(2);
+
+    // Display result
+    const resultElement = document.getElementById('bmi-result');
+    resultElement.textContent = `Your BMI is: ${bmi}`;
+
+    // Optional: Add BMI category
+    let category = '';
+    if (bmi < 18.5) {
+        category = 'Underweight';
+    } else if (bmi >= 18.5 && bmi < 24.9) {
+        category = 'Normal weight';
+    } else if (bmi >= 25 && bmi < 29.9) {
+        category = 'Overweight';
+    } else {
+        category = 'Obesity';
+    }
+    resultElement.textContent += ` (${category})`;
+}
+</script>
+</body>
+</html>

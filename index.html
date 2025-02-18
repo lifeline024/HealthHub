@@ -295,7 +295,7 @@
                         window.location.href = "https://console.firebase.google.com/project/health-information-1843e";  // Admin dashboard or page
                     } else {
                         alert("✅ Login Successful!");
-                        window.location.href = "user-info.html";  // General user page
+                        window.location.href = "home.html";  // General user page
                     }
                 })
                 .catch((error) => {
@@ -351,17 +351,6 @@
             document.getElementById('forgotPassword-container').style.display = 'none';
             document.getElementById('login-container').style.display = 'block';
         });    
-
-// Assume user logs in successfully
-
-function handleLogin() {
-    // Set the session variable
-    sessionStorage.setItem("loggedIn", "true");
-
-    // Redirect to dashboard page after successful login
-    window.location.href = "dashboard.html";
-}
-
      //   history.replaceState(null, null, "admin.html");//
     </script>
 </body>

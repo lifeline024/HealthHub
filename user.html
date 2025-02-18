@@ -3,97 +3,402 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Information</title>
+    <title>Health Profile</title>
     <style>
-        /* Body Styling with Gradient Background */
+        /* Base styles */
         body {
-            font-family: 'Arial', sans-serif;
-            background: linear-gradient(135deg, #6e7c7c, #b8d8d8); /* Gradient background */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
+            font-family: Arial, sans-serif;
             margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #f3f4f6, #e5e7eb);
+            position: relative;
+            overflow-x: hidden;
+            background-color: #f8fafc;
+            transition: background-color 0.3s, color 0.3s;
         }
 
-        h2 {
-            color: #333;
-            text-align: center;
-            margin-bottom: 30px;
-            font-size: 24px;
+        /* Dark theme styles */
+        body.dark-theme {
+            background-color: #1f2937;
+            color: #e2e8f0;
         }
 
-        .info-container {
-            background: white;
-            padding: 30px;
+        /* Settings Button */
+        .settings {
+            height: auto;
+            width: auto;
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background-color: #3b82f6;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            z-index: 10;
+        }
+
+        .settings:hover {
+            background-color: #2563eb;
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 100%;
+            margin: auto;
+            position: relative;
+            z-index: 1;
+            overflow-y: auto;
+            height: 100vh;
+        }
+
+        /* Card Styles */
+        .card {
+            background: linear-gradient(145deg, #ffffff, #e2e8f0);
             border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+            padding: 25px;
+            margin-bottom: 20px;
+            backdrop-filter: blur(6px);
+            background-color: rgba(255, 255, 255, 0.85);
+            transition: transform 0.3s ease, box-shadow 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Profile Header */
+        .profile-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .profile-pic {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            margin-right: 20px;
+            border: 3px solid #3b82f6;
+        }
+
+        .profile-info h2 {
+            margin: 0;
+            font-size: 26px;
+            color: #1e293b;
+        }
+
+        .profile-info p {
+            margin: 5px 0;
+            color: #64748b;
+        }
+
+        /* Progress Bars */
+        .progress-bar {
+            height: 8px;
+            border-radius: 4px;
+            background-color: #e5e7eb;
+            position: relative;
+            overflow: hidden;
+            margin-top: 10px;
+        }
+
+        .progress-bar div {
+            height: 100%;
+            border-radius: 4px;
+            background-color: #34d399; /* Light Green */
+            width: 0;
+            transition: width 1s ease-in-out;
+        }
+
+        .progress-bar.blood-pressure div {
+            background-color: #ef4444; /* Red */
+        }
+
+        .progress-bar.heart-rate div {
+            background-color: #60a5fa; /* Blue */
+        }
+
+        /* Button */
+        .button {
+            display: block;
             width: 100%;
-            max-width: 400px;
+            background-color: #4caf50;
+            color: white;
+            text-align: center;
+            padding: 12px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 18px;
+            margin-top: 15px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
         }
 
-        .info-item {
-            margin-bottom: 15px;
+        .button:hover {
+            background-color: #45a049;
+            transform: scale(1.05);
         }
 
-        .info-item label {
-            font-weight: bold;
-            color: #555;
-            font-size: 16px;
+        /* Health Metrics */
+        .health-metrics {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
         }
 
-        .info-item span {
-            color: #333;
-            font-size: 16px;
+        .health-metric {
+            text-align: center;
+            transition: transform 0.3s ease;
+            margin: 10px;
+            width: 30%;
         }
 
-        /* Mobile Responsiveness */
-        @media (max-width: 600px) {
-            h2 {
-                font-size: 20px;
+        .health-metric img {
+            width: 70px;
+            height: 70px;
+            margin-bottom: 12px;
+        }
+
+        .health-metric:hover {
+            transform: scale(1.1);
+        }
+
+        .health-metric p {
+            margin: 5px 0;
+            color: #64748b;
+        }
+
+        /* Medical Records */
+        .medical-records ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .medical-records ul li {
+            padding: 12px 0;
+            border-bottom: 1px solid #e5e7eb;
+            color: #64748b;
+        }
+
+        .medical-records ul li:last-child {
+            border-bottom: none;
+        }
+
+        /* Theme toggle styles */
+        .theme-toggle {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .theme-toggle input {
+            margin-right: 10px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
             }
 
-            .info-container {
-                padding: 20px;
+            .profile-pic {
+                width: 70px;
+                height: 70px;
+            }
+
+            .profile-info h2 {
+                font-size: 22px;
+            }
+
+            .health-metrics {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .health-metric {
+                width: 80%;
+                margin: 10px 0;
+            }
+
+            .button {
+                font-size: 16px;
+                padding: 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 5px;
+            }
+
+            .card {
+                padding: 15px;
+            }
+
+            .profile-pic {
+                width: 60px;
+                height: 60px;
+            }
+
+            .profile-info h2 {
+                font-size: 18px;
+            }
+
+            .button {
+                font-size: 14px;
+                padding: 8px;
             }
         }
     </style>
 </head>
 <body>
-    <div class="info-container">
-        <div class="info-item">
-            <label for="fullName">Full Name:</label>
-            <span id="fullName"></span>
+    <div class="theme-toggle">
+        <input type="checkbox" id="theme-switch" onchange="toggleTheme()">
+        <label for="theme-switch">Dark Mode</label>
+    </div>
+
+    <div class="container">
+        <div class="card">
+            <div class="profile-header">
+                <img src="dev pic.jpg" alt="Profile Picture" class="profile-pic">
+                <div class="profile-info">
+                    <h2 id="fullName">Devjyoti Roy</h2>
+                    <p id="ageGender">Age: 19 | Male</p>
+                    <p id="bloodGroup">Blood Group: B+</p>
+                </div>
+            </div>
+            <!-- <input type="file" id="imageUpload" accept="image/*"> -->
         </div>
-        <div class="info-item">
-            <label for="age">Age:</label>
-            <span id="age"></span>
+
+        <!-- <a href="http://127.0.0.1:5500/setting.html" class="settings">Settings</a> -->
+
+        <div class="card">
+            <h3>Health Metrics</h3>
+            <div class="health-metrics">
+                <div class="health-metric">
+                    <img src="https://cdn0.iconfinder.com/data/icons/health-care-and-medical-2/256/Medical__Health_care-38-512.png" alt="Weight Icon">
+                    <p>54 kg</p>
+                </div>
+                <div class="health-metric">
+                    <img src="https://media.istockphoto.com/id/820396992/vector/blood-pressure-icon.jpg?s=612x612&w=0&k=20&c=0ZiIvpkGXNmmBVig059INJjAsWby_Q4GepcGzehShjQ=" alt="Blood Pressure Icon">
+                    <p>120/80 mmHg</p>
+                </div>
+                <div class="health-metric">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT3diHRiP0V2umxW6NgFCv1PrriJmVPQxfrvQ&s" alt="Heart Rate Icon">
+                    <p>72 bpm</p>
+                </div>
+            </div>
+            <div class="progress-bar"><div style="width: 72%;"></div></div>
+            <p>Weight Progress</p>
+            <div class="progress-bar blood-pressure"><div style="width: 53%;"></div></div>
+            <p>Blood Pressure Progress</p>
+            <div class="progress-bar heart-rate"><div style="width: 63%;"></div></div>
+            <p>Heart Rate Progress</p>
         </div>
-        <div class="info-item">
-            <label for="bloodgroup">Blood Group :</label>
-            <span id="bloodgroup"></span>
+
+        <div class="card">
+            <h3>Medical Records</h3>
+            <div class="medical-records">
+                <ul>
+                    <li>Diabetes Type 2 - Diagnosed in 2020</li>
+                    <li>Last Health Checkup - Jan 2024</li>
+                    <li>Recent X-Ray - Normal</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>Upcoming Appointments</h3>
+            <p>Dr. Ramesh Kumar - 25th Feb 2025, 10:30 AM</p>
+            <a href="#" class="button">View All Appointments</a>
         </div>
     </div>
 
     <script>
-        // Function to display stored data
+        // Function to toggle between dark and light theme
+        function toggleTheme() {
+            document.body.classList.toggle('dark-theme');
+            // Store the current theme in localStorage so it persists
+            if (document.body.classList.contains('dark-theme')) {
+                localStorage.setItem('theme', 'dark');
+            } else {
+                localStorage.setItem('theme', 'light');
+            }
+        }
+
+        // Function to apply the saved theme when the page loads
+        function applySavedTheme() {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                document.body.classList.add('dark-theme');
+            } else {
+                document.body.classList.remove('dark-theme');
+            }
+        }
+
+        // Progress bar animation
+        document.addEventListener("DOMContentLoaded", function () {
+            const progressBars = document.querySelectorAll(".progress-bar div");
+            progressBars.forEach(bar => {
+                let width = bar.style.width;
+                bar.style.width = "0%";
+                setTimeout(() => {
+                    bar.style.width = width;
+                }, 500);
+            });
+        });
+
+        // Call the applySavedTheme function when the page is loaded
+        applySavedTheme();
+
+        // Fetch and display user information from localStorage
         window.onload = function() {
-            // Get data from localStorage
             const fullName = localStorage.getItem('fullName');
             const age = localStorage.getItem('age');
             const bloodgroup = localStorage.getItem('bloodgroup');
 
-            // Display data on the page
             if (fullName) {
                 document.getElementById('fullName').textContent = fullName;
             }
             if (age) {
-                document.getElementById('age').textContent = age;
+                document.getElementById('ageGender').textContent = `Age: ${age} | Male`;
             }
             if (bloodgroup) {
-                document.getElementById('bloodgroup').textContent = bloodgroup;
+                document.getElementById('bloodGroup').textContent = `Blood Group: ${bloodgroup}`;
             }
         };
+
+
+
+        // Profile Picture Upload
+        const profilePic = document.getElementById('profilePic');
+        const imageUpload = document.getElementById('imageUpload');
+
+        imageUpload.addEventListener('change', (event) => {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onloadend = function () {
+                    profilePic.src = reader.result;
+                    // Save profile picture to localStorage
+                    localStorage.setItem('profilePic', reader.result);
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // Load saved profile picture on page load
+        const savedProfilePic = localStorage.getItem('profilePic');
+        if (savedProfilePic) {
+            profilePic.src = savedProfilePic;
+        }
     </script>
 </body>
 </html>

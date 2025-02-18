@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health Discover</title>
+    <link rel="styles  heet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 10;
+            padding: 10;
+            background-color: #f2f8f2; 
+            color: rgb(8, 8, 8);
+        }
+    
+        header {
+            background-color: #4caf50; 
+            color: white; 
+            padding: 20px;
+            text-align: center;
+            font-size: 28px;
+            height: 50px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            padding-top: 0px;
+            margin-top: 2px;
+            font-size: 40px;
+            text-align: left;
+        }
+    
+        .stories {
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+        }
+    
+        .story-container {
+            display: flex;
+            gap: 15px;
+            overflow-x: auto;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            color: black;
+        }
+    
+        .story-container::-webkit-scrollbar {
+            display: none;
+        }
+    
+        .story {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+    
+        .story:hover {
+            transform: scale(1.1);
+            box-shadow: 0px 4px 10px rgba(34, 165, 98, 0.2);
+        }
+    
+        .story img {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            border: 3px solid #388e3c; /* Green border */
+        }
+    
+        .slider-container {
+            text-align: center;
+            padding: 2px;
+        }
+    
+        .slider {
+            display: flex;
+            gap: 20px;
+            overflow-x: auto;
+        }
+    
+        .slide {
+            min-width: 320px;
+            background: linear-gradient(135deg, #a5dfa9, #4caf50); /* Green gradient */
+            padding: 21px;
+            border-radius: 15px;
+            box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+    
+        .slide:hover {
+            transform: translateY(-5px);
+        }
+    
+        .slide h2 {
+            color: white;
+        } 
+    
+        .consultation {
+            text-align: center;
+            padding: 10px;
+            background: #a5dfa9; /* Light green background */
+            border-radius: 10px;
+            margin: 10px auto;
+            width: 90%;
+            max-width: 800px;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+        }
+    
+        .NABC button {
+            background: linear-gradient(90deg, #81c784, #66bb6a); /* Light green to green gradient */
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 8px;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.2s;
+            font-size: 16px;
+            font-weight: bold;
+        }
+    
+        .NABC button:hover {
+            background: #66bb6a; /* Green on hover */
+            transform: scale(1.05);
+        }
+    
+        /* Healthfeed Section */
+        .health-feed {
+            padding: 40px 20px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            max-width: 900px;
+            margin: 40px auto;
+        }
+
+        .health-feed h1 {
+            color: #2563eb;
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+        }
+
+        .health-feed p {
+            color: #555;
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+
+        /* Health Tip Cards */
+        .feed-card {
+            display: flex;
+            align-items: center;
+            background: white;
+            padding: 15px;
+            margin: 10px auto;
+            width: 90%;
+            max-width: 600px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            font-size: 1.1rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .feed-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .feed-card img {
+            width: 50px;
+            height: 50px;
+            margin-right: 15px;
+            border-radius: 50%;
+        }
+
+        .feed-card span {
+            flex: 1;
+            text-align: left;
+        }
+
+        /* Read More Button */
+        .btn {
+            background: linear-gradient(135deg, #007bff, #0056b3);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 20px;
+        }
+
+        .btn:hover {
+            background: linear-gradient(135deg, #0056b3, #003d80);
+            transform: translateY(-2px);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 600px) {
+            .feed-card {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .feed-card img {
+                margin-bottom: 10px;
+            }
+        }
+    
+        .discover-health-journey {
+            text-align: center;
+            padding: 10px;
+            background: linear-gradient(120deg, #66bb6a, #81c784); /* Green gradient */
+            color: white;
+            font-size: 20px;
+            margin-left: 10px;
+            margin-right: 10px;
+            font-weight: bold;
+            border-radius: 10px;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+        }
+    
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background: #66bb6a; /* Green background */
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 0;
+            box-shadow: 0px -2px 10px rgba(0, 0, 0, 0.1);
+        }
+    
+        .navbar {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background: linear-gradient(135deg, #1e3a8a, #2563eb);
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 0;
+            border-radius: 10px;
+            box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.1);
+            z-index: 1000; /* Ensure navbar stays on top */
+        }
+        
+        .nav-item {
+            color: white;
+            text-decoration: none;
+            font-size: 1rem;
+            padding: 8px 12px;
+            border-radius: 10px;
+            transition: background 0.3s ease, transform 0.3s ease;
+        }
+        
+        .nav-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-5px);
+        }
+
+
+
+               /* Floating Help Button */
+               .fab-container {
+                position: fixed;
+                bottom: 20px;
+                right: 20px;
+                z-index: 1000;
+            }
+    
+            .fab-button {
+                width: 60px;
+                height: 60px;
+                background-color: #fff;
+                border: none;
+                border-radius: 50%;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+                cursor: pointer;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                transition: transform 0.3s ease, background-color 0.3s ease;
+            }
+    
+            .fab-button:hover {
+                transform: scale(1.1);
+            }
+    
+            /* Add avatar icon */
+            .assistant-icon {
+                width: 100%;
+                height: 100%;
+                border-radius: 50%;
+                object-fit: cover;
+            }
+    
+            /* Toolbar */
+            .toolbar {
+                position: absolute;
+                bottom: 80px;
+                right: 0;
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+                opacity: 0;
+                visibility: hidden;
+                transition: opacity 0.3s ease, visibility 0.3s ease;
+            }
+    
+            .fab-container.active .toolbar {
+                opacity: 1;
+                visibility: visible;
+            }
+    
+            .toolbar a {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+                background-color: #0078d7;
+                color: #fff;
+                text-decoration: none;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+                transition: background-color 0.3s ease, transform 0.3s ease;
+            }
+    
+            .toolbar a:hover {
+                background-color: #005bb5;
+                transform: scale(1.1);
+            }
+    
+            .toolbar a i {
+                font-size: 20px;
+            }
+    
+            /* Tooltip */
+            .toolbar a span {
+                position: absolute;
+                right: 60px;
+                background-color: #333;
+                color: #fff;
+                font-size: 12px;
+                padding: 5px 10px;
+                border-radius: 5px;
+                white-space: nowrap;
+                visibility: hidden;
+                opacity: 0;
+                transform: translateX(-10px);
+                transition: opacity 0.3s ease, transform 0.3s ease;
+            }
+    
+            .toolbar a:hover span {
+                visibility: visible;
+                opacity: 1;
+                transform: translateX(0);
+            }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Discover</h1>
+    </header>
+
+    <!-- Stories Section -->
+    <section class="stories">
+        <div class="story-container">
+            <div class="story" data-user="sonal">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTWPgtPs3y8tQdwFV_ocwTdjsDKsBh7ERfTDg&s" alt="Sonal">
+                <p>Sonal</p>
+            </div>
+            <div class="story" data-user="sriya">
+                <img src="https://media.istockphoto.com/id/1682296067/photo/happy-studio-portrait-or-professional-man-real-estate-agent-or-asian-businessman-smile-for.jpg?s=612x612&w=0&k=20&c=9zbG2-9fl741fbTWw5fNgcEEe4ll-JegrGlQQ6m54rg=" alt="Sriya">
+                <p>Sriya</p>
+            </div>
+            <div class="story" data-user="priya">
+                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cHJvZmlsZSUyMHBpY3R1cmV8ZW58MHx8MHx8fDA%3D" alt="Priya">
+                <p>Priya</p>
+            </div>
+            <div class="story" data-user="chikku">
+                <img src="https://media.istockphoto.com/id/1437816897/photo/business-woman-manager-or-human-resources-portrait-for-career-success-company-we-are-hiring.jpg?s=612x612&w=0&k=20&c=tyLvtzutRh22j9GqSGI33Z4HpIwv9vL_MZw_xOE19NQ=" alt="Chikku">
+                <p>Chikku</p>
+            </div>
+            <div class="story" data-user="Pinki">
+                <img src="https://media.istockphoto.com/id/1317804578/photo/one-businesswoman-headshot-smiling-at-the-camera.webp?b=1&s=612x612&w=0&k=20&c=XdZqQ92Yk82otKZio_pE0KURn0U08sIr5Vz9bFSm7bM=" alt="Pinki">
+                <p>Pinki</p>
+            </div>
+            <div class="story" data-user="Pintu">
+                <img src="https://img.freepik.com/free-photo/handsome-man-outdoors-portrait_158595-3560.jpg?semt=ais_hybrid" alt="Pintu">
+                <p>Pintu</p>
+            </div>
+            <div class="story" data-user="Summit">
+                <img src="https://t4.ftcdn.net/jpg/08/12/62/51/360_F_812625126_KjpcIlXPXa8WfQaPBEyxCmNzkdvzE7HK.jpg" alt="Summit">
+                <p>Summit</p>
+            </div>
+            <div class="story" data-user="Sushil">
+                <img src="https://t3.ftcdn.net/jpg/04/23/59/74/360_F_423597477_AKCjGMtevfCi9XJG0M8jter97kG466y7.jpg" alt="Sushil">
+                <p>Sushil</p>
+            </div>
+            <div class="story" data-user="rinki">
+                <img src="https://media.istockphoto.com/id/1452895487/photo/portrait-of-a-charming-business-woman-in-the-office.jpg?s=612x612&w=0&k=20&c=fZAe285E2Tq-9dtvSygGZe90NTRK8LN4cGqTrAmKmEo=" alt="Rinki">
+                <p>Rinki</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sliding Container -->
+    <section class="slider-container">
+        <h1>Why Choose Our Diagnostic Labs?</h1>
+        <p>Reliable Results, Advanced Technology, and Patient-Centered Care</p>
+        <div class="slider">
+            <div class="slide">
+                <div class="slide11container">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTX5r8VDtd4tR6HVJnSneZaaldnUWi5BvPECg&s" alt="Strand Life Sciences">
+                    <h2>Strand Life Sciences</h2>
+                    <p>Genomic Diagnostic</p>
+                    <button onclick="window.location.href='your-page.html'" style="background: linear-gradient(135deg, #007bff, #0056b3); color: white; padding: 12px 20px; border: none; border-radius: 8px; font-size: 16px; cursor: pointer; transition: background 0.3s ease, transform 0.3s ease;">Book Slot</button>
+                </div>
+            </div>
+            <div class="slide">
+                <div class="slide12container">
+                    <img src="data:image/png;base64,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" alt="Reliance MedLab">
+                    <h3>Reliance MedLab</h3>
+                    <p>Offer SMART Health Packages</p>
+                    <button onclick="window.location.href='your-page.html'" style="background: linear-gradient(135deg, #007bff, #0056b3); color: white; padding: 12px 20px; border: none; border-radius: 8px; font-size: 16px; cursor: pointer; transition: background 0.3s ease, transform 0.3s ease;">Book Slot</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Consultation Section -->
+    <section class="consultation">
+        <h1>Consultation by</h1>
+        <p>Expert Medical Advice at Your Fingertips</p>
+        <div class="NABC">
+            <button>All Specializations</button>
+            <button>Common Symptoms</button>
+            <button>Consultation History</button>
+        </div>
+    </section>
+
+    <!-- Health Feed Section -->
+    <section class="health-feed">
+        <h1>Healthfeed 🌿</h1>
+        <p>Customised health content curated by industry experts</p>
+
+        <div class="feed-card">
+            <img src="https://cdn-icons-png.flaticon.com/512/1046/1046786.png" alt="Tip">
+            <span><strong>Stay Hydrated:</strong> Drink at least 8 glasses of water daily for better health.</span>
+        </div>
+
+        <div class="feed-card">
+            <img src="https://cdn-icons-png.flaticon.com/512/3003/3003192.png" alt="Tip">
+            <span><strong>Daily Exercise:</strong> 30 minutes of exercise helps boost immunity and keeps you fit.</span>
+        </div>
+
+        <div class="feed-card">
+            <img src="https://cdn-icons-png.flaticon.com/512/2920/2920066.png" alt="Tip">
+            <span><strong>Healthy Diet:</strong> Eat a balanced diet rich in fruits, vegetables, and proteins.</span>
+        </div>
+    </section>
+
+    <!-- Discover Your Health Journey -->
+    <section class="discover-health-journey">
+        <h1>DISCOVER YOUR HEALTH JOURNEY</h1>  
+    </section>
+
+
+      <!-- Bottom Navigation -->
+      <<div class="navbar">
+        <a href="home.html" class="nav-item"><i class="fas fa-home"></i> Home</a>
+        <a href="discover.html" class="nav-item"><i class="fas fa-compass"></i> Discover</a>
+        <a href="user.html" class="nav-item"><i class="fas fa-user"></i> Profile</a>
+    </div>
+
+    
+         <!-- Call-to-Action Section -->
+         <div class="fab-container">
+            <!-- Main FAB with Assistant Avatar -->
+            <button class="fab-button">
+                <img src="https://img.icons8.com/?size=100&id=13540&format=png&color=000000" alt="Assistant" class="assistant-icon">
+            </button>
+    
+            <!-- Toolbar -->
+            <div class="toolbar">
+                <a href="https://wa.me/+918083030197" target="_blank">
+                    <i class="fab fa-whatsapp"></i>
+                    <span>WhatsApp</span>
+                </a>
+                <a href="https://t.me/LearningPoint024" target="_blank">
+                    <i class="fab fa-telegram"></i>
+                    <span>Telegram</span>
+                </a>
+                <a href="mailto:rajaayush931@gmail.com" target="_blank">
+                    <i class="fas fa-envelope"></i>
+                    <span>Email</span>
+                </a>
+            </div>
+
+    <script>
+        // Toggle FAB Toolbar
+ const fabButton = document.querySelector('.fab-button');
+ const fabContainer = document.querySelector('.fab-container');
+
+ fabButton.addEventListener('click', () => {
+     fabContainer.classList.toggle('active');
+ });
+    </script>
+</body>
+</html>

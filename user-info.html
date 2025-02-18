@@ -30,6 +30,7 @@
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             width: 100%;
             max-width: 500px;
+            margin: 0 auto;
         }
 
         .question {
@@ -43,14 +44,18 @@
 
         label {
             display: block;
-            margin-bottom: 8px;
+            margin-bottom: 10px;
             font-weight: bold;
-            color: #555;
+            padding-right: 10px;
+            color: #555
         }
 
         input {
             width: 100%;
-            padding: 10px;
+            padding-right: 5px;
+            padding-left: 5px;
+            padding-top: 10px;
+            padding-bottom: 10px;
             margin-bottom: 20px;
             border: 1px solid #ddd;
             border-radius: 8px;
@@ -99,11 +104,33 @@
             input {
                 font-size: 14px;
             }
+
+            h2 {
+                font-size: 1.5rem;
+                margin-bottom: 20px;
+            }
+        }
+
+        /* Tablet View (600px to 768px) */
+        @media (max-width: 768px) and (min-width: 601px) {
+            .form-container {
+                padding: 18px;
+            }
+
+            .btn-next {
+                padding: 10px;
+                font-size: 15px;
+            }
+
+            input {
+                font-size: 15px;
+            }
         }
     </style>
 </head>
 <body>
     <div class="form-container">
+        <h2>User Details</h2>
         <form id="userDetailsForm">
             <div class="question active" id="q1">
                 <label for="fullName">Full Name:</label>
@@ -116,7 +143,7 @@
                 <button type="button" class="btn-next" onclick="nextQuestion(2)">Next</button>
             </div>
             <div class="question" id="q3">
-                <label for="bloodgroup">Health Status (Blood Group):</label>
+                <label for="bloodgroup">Blood Group:</label>
                 <input type="text" id="bloodgroup" placeholder="Enter your Blood Group" required><br><br>
                 <button type="button" class="btn-next" onclick="submitForm()">Submit</button>
             </div>
@@ -125,6 +152,11 @@
 
     <script>
         let currentQuestion = 1;
+
+        // Check if user data already exists
+        if (localStorage.getItem('fullName') && localStorage.getItem('age') && localStorage.getItem('bloodgroup')) {
+            window.location.href = 'user.html'; // Redirect to main page if data exists
+        }
 
         // Show next question
         function nextQuestion(questionNumber) {
@@ -147,10 +179,8 @@
         function submitForm() {
             localStorage.setItem('bloodgroup', document.getElementById('bloodgroup').value);
             alert('Information saved!');
-            window.location.href = 'dashboard.html';  // Redirect to user.html
+            window.location.href = 'user.html';  // Redirect to main page after submission
         }
-
-        history.replaceState(null, null, "dashboad.html");
     </script>
 </body>
 </html>
