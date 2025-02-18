@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Information</title>
+    <style>
+        /* Body Styling with Gradient Background */
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #6e7c7c, #b8d8d8); /* Gradient background */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        h2 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 24px;
+        }
+
+        .info-container {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .info-item {
+            margin-bottom: 15px;
+        }
+
+        .info-item label {
+            font-weight: bold;
+            color: #555;
+            font-size: 16px;
+        }
+
+        .info-item span {
+            color: #333;
+            font-size: 16px;
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 600px) {
+            h2 {
+                font-size: 20px;
+            }
+
+            .info-container {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="info-container">
+        <div class="info-item">
+            <label for="fullName">Full Name:</label>
+            <span id="fullName"></span>
+        </div>
+        <div class="info-item">
+            <label for="age">Age:</label>
+            <span id="age"></span>
+        </div>
+        <div class="info-item">
+            <label for="bloodgroup">Blood Group :</label>
+            <span id="bloodgroup"></span>
+        </div>
+    </div>
+
+    <script>
+        // Function to display stored data
+        window.onload = function() {
+            // Get data from localStorage
+            const fullName = localStorage.getItem('fullName');
+            const age = localStorage.getItem('age');
+            const bloodgroup = localStorage.getItem('bloodgroup');
+
+            // Display data on the page
+            if (fullName) {
+                document.getElementById('fullName').textContent = fullName;
+            }
+            if (age) {
+                document.getElementById('age').textContent = age;
+            }
+            if (bloodgroup) {
+                document.getElementById('bloodgroup').textContent = bloodgroup;
+            }
+        };
+    </script>
+</body>
+</html>
