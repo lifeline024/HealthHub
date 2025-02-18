@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Health Profile</title>
+    <title>Profile</title>
     <style>
         /* Base styles */
         body {
@@ -264,13 +264,12 @@
             <div class="profile-header">
                 <img src="progile.jpg" alt="Profile Picture" class="profile-pic">
                 <div class="profile-info">
-                    <h2 id="fullName">USER</h2>
+                    <h2 id="fullName">JOhn</h2>
                     <p id="ageGender">Age: xx | Male</p>
                     <p id="bloodGroup">Blood Group: B+</p>
                 </div>
             </div>
             <!-- <input type="file" id="imageUpload" accept="image/*"> -->
-            <button onclick="logout()" style="background-color: #e74c3c; color: white; border: none; padding: 8px 15px; border-radius: 5px; font-size: 14px; cursor: pointer; transition: background-color 0.3s;">Logout</button>
         </div>
         
         <div class="card">
@@ -308,20 +307,47 @@
         </div>
         
 
-        <!-- Upcoming Appointments Section
-<div class="container" id="upcoming-appointments">
-    <h3>Upcoming Appointments</h3>
-    <p id="appointment-details">No appointments booked yet.</p>
-    <a href="#" class="button">View All Appointments</a>
-</div> -->
+        <div class="card">
+            <h3>Upcoming Appointments</h3>
+            <p>Dr. Ramesh Kumar - 25th Feb 2025, 10:30 AM</p>
+            <a href="#" class="button">View All Appointments</a>
+        </div>
     </div>
 
     <script>
-
-        function logout() {
-            localStorage.clear(); // Clears all stored data
-            window.location.href = "index.html"; // Redirect to login page
+        // Function to toggle between dark and light theme
+        function toggleTheme() {
+            document.body.classList.toggle('dark-theme');
+            // Store the current theme in localStorage so it persists
+            if (document.body.classList.contains('dark-theme')) {
+                localStorage.setItem('theme', 'dark');
+            } else {
+                localStorage.setItem('theme', 'light');
+            }
         }
+
+        // Function to apply the saved theme when the page loads
+        function applySavedTheme() {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                document.body.classList.add('dark-theme');
+            } else {
+                document.body.classList.remove('dark-theme');
+            }
+        }
+
+        // Progress bar animation
+        document.addEventListener("DOMContentLoaded", function () {
+            const progressBars = document.querySelectorAll(".progress-bar div");
+            progressBars.forEach(bar => {
+                let width = bar.style.width;
+                bar.style.width = "0%";
+                setTimeout(() => {
+                    bar.style.width = width;
+                }, 500);
+            });
+        });
+
         // Call the applySavedTheme function when the page is loaded
         applySavedTheme();
 
@@ -396,7 +422,6 @@
         if (savedProfilePic) {
             profilePic.src = savedProfilePic;
         }
-
     </script>
 </body>
 </html>
