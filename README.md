@@ -22,18 +22,17 @@ HealthHub is a smart and secure **Health Data Information Management App** desig
 
 ## 🛠️ Technologies Used  
 
-- **Frontend**: HTML, CSS, JavaScript (React/Next.js if applicable)  
-- **Backend**: Firebase (Authentication, Firestore, Cloud Storage)  
-- **Database**: Firestore / NoSQL  
+- **Frontend**: HTML, CSS, JavaScript   
+- **Backend**: Firebase (Authentication)   
 - **Hosting**: Firebase Hosting / Vercel  
-- **Notifications**: Push notifications for reminders (if implemented)  
+- **Notifications**: Push e-mail to doctor for appointment   
 
 ---
 
 ## 📌 How to Use  
 
 1. **Sign Up/Login** – Create an account with secure authentication.  
-2. **Upload Health Records** – Upload prescriptions, reports, and medical files.  
+2. **Upload Health Records** – Fill you basic health details.  
 3. **Set Health Reminders** – Get notified for appointments and medication schedules.  
 4. **Manage & Access Data** – Search, filter, and download records as needed.  
 5. **Share Data Securely** – Option to share health info with trusted contacts.  
