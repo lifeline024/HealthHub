@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Details</title>
     <style>
-        /* General Styles */
+       
         body {
             font-family: 'Arial', sans-serif;
             background: linear-gradient(135deg, #6e7c7c, #b8d8d8);
@@ -112,7 +112,7 @@
             }
         }
 
-        /* Tablet View (600px to 768px) */
+        
         @media (max-width: 768px) and (min-width: 601px) {
             .form-container {
                 padding: 18px;
@@ -219,15 +219,15 @@
                 localStorage.setItem('allergies', document.getElementById('allergies').value);
             }
     
-            // Hide current question and show next one
+           
             current.classList.remove('active');
             if (next) next.classList.add('active');
         }
     
-        // Submit form data
+        
         function submitForm() {
             alert('Information saved!');
-            window.location.href = 'user.html';  // Redirect to main page after submission
+            window.location.href = 'user.html';  
         }
     </script>
     
