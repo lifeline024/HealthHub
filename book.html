@@ -172,15 +172,15 @@
     <div class="form-container">
         <h2>Doctor Appointment Form</h2>
         <form id="appointment-form">
-            <!-- Full Name -->
+           
             <label for="name">Full Name:</label>
             <input type="text" id="name" name="name" required>
 
-            <!-- Date of Birth -->
+            
             <label for="dob">Date of Birth:</label>
             <input type="date" id="dob" name="dob" required>
 
-            <!-- Gender Selection -->
+            
             <label>Gender:</label>
             <div class="radio-group">
                 <label><input type="radio" name="gender" value="male" required> Male</label>
@@ -188,23 +188,23 @@
                 <label><input type="radio" name="gender" value="other"> Other</label>
             </div>
 
-            <!-- Email -->
+
             <label for="email">Email Address:</label>
             <input type="email" id="email" name="email" required>
 
-            <!-- Phone Number -->
+            
             <label for="phone">Phone Number:</label>
             <input type="tel" id="phone" name="phone" required>
 
-            <!-- Emergency Contact -->
+           
             <label for="emergency-contact">Emergency Contact Number:</label>
             <input type="tel" id="emergency-contact" name="emergency-contact" required>
 
-            <!-- Preferred Appointment Date -->
+           
             <label for="appointment-date">Preferred Appointment Date:</label>
             <input type="date" id="appointment-date" name="appointment-date" required>
 
-            <!-- Preferred Time Slot -->
+           
             <label for="time-slot">Preferred Time Slot:</label>
             <select id="time-slot" name="time-slot" required>
                 <option value="">Select</option>
@@ -213,7 +213,7 @@
                 <option value="evening">Evening (4 PM - 8 PM)</option>
             </select>
 
-            <!-- Select Doctor -->
+           
             <label for="doctor">Select Doctor/Specialization:</label>
             <select id="doctor" name="doctor" required>
                 <option value="">Select</option>
@@ -226,7 +226,7 @@
                 <option value="pediatrician">Pediatrician</option>
             </select>
 
-            <!-- Medical History -->
+            
             <label>Medical History (Check if applicable):</label>
             <div class="checkbox-group">
                 <label><input type="checkbox" name="medical_history" value="diabetes"> Diabetes</label>
@@ -236,31 +236,29 @@
                 <label><input type="checkbox" name="medical_history" value="none"> None</label>
             </div>
 
-            <!-- Describe Your Problem -->
+           
             <label for="problem">Describe Your Problem:</label>
             <textarea id="problem" name="problem" rows="4" required></textarea>
 
           
-
-            <!-- Submit Button -->
             <button type="submit">Book Appointment</button>
         </form>
     </div>
 
-    <!-- Latest EmailJS SDK -->
+    <!-- EmailJS SDK -->
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 
     <script>
-        // Initialize EmailJS properly
+        // EmailJS properly
         (function() {
-            emailjs.init("tbCWrN3v-IOKvZIhd"); // Replace with your EmailJS Public Key
+            emailjs.init("tbCWrN3v-IOKvZIhd"); 
         })();
 
         document.getElementById("appointment-form").addEventListener("submit", function(event) {
-            event.preventDefault(); // Prevent default form submission
+            event.preventDefault(); 
 
-            const serviceID = "service_rlg0apd"; // Replace with your EmailJS Service ID
-            const templateID = "template_i0w7vyr"; // Replace with your EmailJS Template ID
+            const serviceID = "service_rlg0apd"; // EmailJS Service ID
+            const templateID = "template_i0w7vyr"; // EmailJS Template ID
 
             const formData = {
                 to_name: "Doctor",
@@ -280,7 +278,7 @@
             emailjs.send(serviceID, templateID, formData)
                 .then(() => {
                     alert("Appointment request sent successfully!");
-                    document.getElementById("appointment-form").reset(); // Reset form after submission
+                    document.getElementById("appointment-form").reset(); 
                 })
                 .catch((err) => {
                     alert("Failed to send email. Please try again. Error: " + JSON.stringify(err));
