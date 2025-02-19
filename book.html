@@ -239,13 +239,7 @@
             <label for="problem">Describe Your Problem:</label>
             <textarea id="problem" name="problem" rows="4" required></textarea>
 
-            <!-- Upload Medical Reports -->
-            <label for="reports">Upload Medical Reports (if any):</label>
-            <input type="file" id="reports" name="reports" accept="image/*, .pdf">
-
-            <!-- Additional Comments -->
-            <label for="comments">Additional Comments:</label>
-            <textarea id="comments" name="comments" rows="3"></textarea>
+          
 
             <!-- Submit Button -->
             <button type="submit">Book Appointment</button>
@@ -279,9 +273,7 @@
                 time_slot: document.getElementById("time-slot").value,
                 doctor: document.getElementById("doctor").options[document.getElementById("doctor").selectedIndex].text,
                 problem: document.getElementById("problem").value,
-                medical_history: Array.from(document.querySelectorAll('input[name="medical_history"]:checked'))
-                    .map(el => el.value).join(", ") || "None",
-                additional_comments: document.getElementById("comments").value
+                
             };
 
             emailjs.send(serviceID, templateID, formData)
