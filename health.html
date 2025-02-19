@@ -9,7 +9,7 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #ffffff; /* Soft light background */
+            background-color: #ffffff; 
             color: #333;
             user-select: none;
         }
@@ -17,7 +17,7 @@
         header {
             text-align: center;
             padding: 10px 20px;
-            background-color: #2c81a5; /* Light blue background */
+            background-color: #2c81a5; 
             color: rgb(255, 255, 255);
             margin-bottom: 20px;
             border-radius: 0 0 10px 10px;
@@ -45,7 +45,7 @@
         
 
         .accordion-header {
-            background-color: #2c7ca1; /* Light blue */
+            background-color: #2c7ca1; 
             color: rgb(255, 255, 255);
             padding: 20px;
             cursor: pointer;
@@ -61,15 +61,15 @@
         }
 
         .accordion-header:hover {
-            background-color: #74bfe4; /* Slightly darker blue */
+            background-color: #74bfe4; 
         }
 
         .accordion-content {
             display: none;
             padding: 20px;
-            background-color: #f1f9ff; /* Very light blue background */
+            background-color: #f1f9ff; 
             font-size: 16px;
-            border-top: 1px solid #d1e7ff; /* Light blue border */
+            border-top: 1px solid #d1e7ff; 
             line-height: 1.6;
         }
 
@@ -95,7 +95,7 @@
         }
 
         .accordion-item:hover .accordion-header {
-            background-color: #73b5cf; /* Slightly darker blue on hover */
+            background-color: #73b5cf; 
         }
     </style>
 </head>
@@ -201,7 +201,7 @@
 <script>
     document.querySelectorAll(".accordion-header").forEach(button => {
         button.addEventListener("click", () => {
-            // Close all open sections before opening the clicked one
+        
             document.querySelectorAll(".accordion-header").forEach(btn => {
                 if (btn !== button) {
                     btn.classList.remove("active");
@@ -209,7 +209,7 @@
                 }
             });
 
-            // Toggle current section
+            
             button.classList.toggle("active");
             let content = button.nextElementSibling;
             content.style.display = content.style.display === "block" ? "none" : "block";
