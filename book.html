@@ -1,315 +1,298 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Doctor Appointment Booking</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
-  <style>
-    /* General Styles */
-    body {
-      font-family: 'Poppins', sans-serif;
-      background: linear-gradient(135deg, #6a11cb, #2575fc);
-      margin: 0;
-      padding: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      color: #333;
-      user-select: none;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor Appointment Form</title>
+    <style>
+        /* General body styling */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #f4f4f4, #d3d3d3);
+            padding: 20px;
+            box-sizing: border-box;
+        }
 
-    .container {
-      background: #fff;
-      padding: 2rem;
-      border-radius: 10px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-      max-width: 500px;
-      width: 90%;
-      text-align: center;
-      margin: 1rem;
-      box-sizing: border-box;
-    }
+        /* Form container */
+        .form-container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 600px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
 
-    h1 {
-      font-size: 2rem;
-      margin-bottom: 1.5rem;
-      color: #2575fc;
-    }
+        .form-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+        }
 
-    .form-group {
-      margin-bottom: 1.5rem;
-      text-align: left;
-    }
+        /* Heading */
+        h2 {
+            text-align: center;
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 20px;
+            position: relative;
+        }
 
-    label {
-      display: block;
-      margin-bottom: 0.5rem;
-      font-weight: 600;
-      color: #555;
-    }
+        h2::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 3px;
+            background: linear-gradient(90deg, #28a745, #218838);
+            margin: 10px auto 0;
+            border-radius: 2px;
+        }
 
-    input[type="text"], input[type="number"], select, textarea {
-      width: 100%;
-      padding: 0.75rem;
-      border: 1px solid #ddd;
-      border-radius: 5px;
-      font-size: 1rem;
-      transition: border-color 0.3s ease;
-      box-sizing: border-box;
-    }
+        /* Label styling */
+        label {
+            font-size: 14px;
+            font-weight: bold;
+            display: block;
+            margin-top: 15px;
+            color: #555;
+        }
 
-    input[type="text"]:focus, input[type="number"]:focus, select:focus, textarea:focus {
-      border-color: #2575fc;
-      outline: none;
-    }
+        /* Input fields */
+        input, textarea, select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 8px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            box-sizing: border-box;
+        }
 
-    textarea {
-      resize: vertical;
-    }
+        input:focus, textarea:focus, select:focus {
+            border-color: #28a745;
+            box-shadow: 0 0 8px rgba(40, 167, 69, 0.3);
+            outline: none;
+        }
 
-    button {
-      padding: 0.75rem 1.5rem;
-      border: none;
-      border-radius: 5px;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-      background: #2575fc;
-      color: #fff;
-    }
+        /* Button */
+        button {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(135deg, #28a745, #218838);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: background 0.3s ease, transform 0.3s ease;
+        }
 
-    button:hover {
-      background: #1a5bbf;
-    }
+        button:hover {
+            background: linear-gradient(135deg, #218838, #28a745);
+            transform: translateY(-2px);
+        }
 
-    .doctor-list {
-      display: none;
-    }
+        button:active {
+            transform: translateY(0);
+        }
 
-    .doctor-card {
-      background: #f9f9f9;
-      padding: 1rem;
-      border-radius: 5px;
-      margin-bottom: 1rem;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    }
+        /* Radio and Checkbox Groups */
+        .radio-group, .checkbox-group {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 8px;
+        }
 
-    .doctor-card h3 {
-      margin: 0;
-      color: #2575fc;
-    }
+        .radio-group label, .checkbox-group label {
+            font-weight: normal;
+            margin-top: 0;
+        }
 
-    .doctor-card p {
-      margin: 0.5rem 0;
-      color: #555;
-    }
+        /* Responsive Design */
+        @media (max-width: 600px) {
+            body {
+                padding: 10px;
+            }
 
-    .confirmation {
-      display: none;
-      color: #28a745;
-    }
+            .form-container {
+                padding: 15px;
+            }
 
-    .confirmation h2 {
-      color: #28a745;
-    }
+            h2 {
+                font-size: 20px;
+            }
 
-    /* Responsive Design */
-    @media (max-width: 600px) {
-      .container {
-        padding: 1rem;
-        width: 95%;
-        margin: 0.5rem;
-      }
+            label {
+                font-size: 13px;
+            }
 
-      h1 {
-        font-size: 1.75rem;
-      }
+            input, textarea, select {
+                padding: 8px;
+                font-size: 13px;
+            }
 
-      input[type="text"], input[type="number"], select, textarea {
-        padding: 0.5rem;
-        font-size: 0.9rem;
-      }
+            button {
+                padding: 10px;
+                font-size: 14px;
+            }
+        }
 
-      button {
-        padding: 0.5rem 1rem;
-        font-size: 0.9rem;
-      }
-    }
+        @media (max-width: 400px) {
+            h2 {
+                font-size: 18px;
+            }
 
-    @media (max-width: 320px) {
-      .container {
-        padding: 0.75rem;
-        width: 100%;
-        margin: 0.25rem;
-      }
+            label {
+                font-size: 12px;
+            }
 
-      h1 {
-        font-size: 1.5rem;
-      }
+            input, textarea, select {
+                padding: 6px;
+                font-size: 12px;
+            }
 
-      input[type="text"], input[type="number"], select, textarea {
-        padding: 0.4rem;
-        font-size: 0.8rem;
-      }
-
-      button {
-        padding: 0.4rem 0.8rem;
-        font-size: 0.8rem;
-      }
-    }
-  
-    .header {
-        display: flex;
-        justify-content: flex-start; /* Left Side Alignment */
-        padding: 10px;
-        background-color: #f8f9fa;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    }
-    
-    .back-btn {
-        background-color: transparent;
-        color: #2563eb;
-        border: none;
-        font-size: 24px;
-        cursor: pointer;
-        transition: color 0.3s ease;
-    }
-    
-    .back-btn:hover {
-        color: #1e3a8a;
-    }
-    
-  </style>
+            button {
+                padding: 8px;
+                font-size: 13px;
+            }
+        }
+    </style>
 </head>
 <body>
-<!-- Appointment Form Page -->
-<div class="container" id="appointment-form-page">
-    <button class="back-btn" onclick="window.location.href='home.html'">⬅️</button>
-    <h1 class="animate_animated animate_fadeInDown">Book Your Doctor Appointment</h1>
-    <form id="appointment-form">
-      <div class="form-group">
-        <label for="name">Full Name:</label>
-        <input type="text" id="name" name="name" placeholder="Enter your full name" required>
-      </div>
-      <div class="form-group">
-        <label for="mobile">Mobile Number:</label>
-        <input type="text" id="mobile" name="mobile" placeholder="Enter your mobile number" required>
-      </div>
-      <div class="form-group">
-        <label for="blood-group">Blood Group:</label>
-        <select id="blood-group" name="blood-group" required>
-          <option value="">Select Blood Group</option>
-          <option value="A+">A+</option>
-          <option value="A-">A-</option>
-          <option value="B+">B+</option>
-          <option value="B-">B-</option>
-          <option value="O+">O+</option>
-          <option value="O-">O-</option>
-          <option value="AB+">AB+</option>
-          <option value="AB-">AB-</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label for="weight">Weight (in kg):</label>
-        <input type="number" id="weight" name="weight" placeholder="Enter your weight" required>
-      </div>
-      <div class="form-group">
-        <label for="height">Height (in cm):</label>
-        <input type="number" id="height" name="height" placeholder="Enter your height" required>
-      </div>
-      <div class="form-group">
-        <label for="symptoms">Symptoms:</label>
-        <textarea id="symptoms" name="symptoms" rows="4" placeholder="Describe your symptoms" required></textarea>
-      </div>
-      <!-- New Appointment Date Field -->
-      <div class="form-group">
-        <label for="appointment-date">Appointment Date:</label>
-        <input type="date" id="appointment-date" name="appointment-date" required>
-      </div>
-      <button type="submit" class="submit-btn">Next</button>
-    </form>
-  </div>
+    <div class="form-container">
+        <h2>Doctor Appointment Form</h2>
+        <form id="appointment-form">
+            <!-- Full Name -->
+            <label for="name">Full Name:</label>
+            <input type="text" id="name" name="name" required>
 
-  <!-- Doctor List Page -->
-  <div class="container doctor-list" id="doctor-list-page">
-    <h1 class="animate_animated animate_fadeInDown">Select a Doctor</h1>
-    <div class="doctor-card">
-      <h3>Dr. John Doe</h3>
-      <p>Cardiologist</p>
-      <button onclick="bookAppointment('Dr. John Doe', 'Cardiologist')">Book</button>
+            <!-- Date of Birth -->
+            <label for="dob">Date of Birth:</label>
+            <input type="date" id="dob" name="dob" required>
+
+            <!-- Gender Selection -->
+            <label>Gender:</label>
+            <div class="radio-group">
+                <label><input type="radio" name="gender" value="male" required> Male</label>
+                <label><input type="radio" name="gender" value="female"> Female</label>
+                <label><input type="radio" name="gender" value="other"> Other</label>
+            </div>
+
+            <!-- Email -->
+            <label for="email">Email Address:</label>
+            <input type="email" id="email" name="email" required>
+
+            <!-- Phone Number -->
+            <label for="phone">Phone Number:</label>
+            <input type="tel" id="phone" name="phone" required>
+
+            <!-- Emergency Contact -->
+            <label for="emergency-contact">Emergency Contact Number:</label>
+            <input type="tel" id="emergency-contact" name="emergency-contact" required>
+
+            <!-- Preferred Appointment Date -->
+            <label for="appointment-date">Preferred Appointment Date:</label>
+            <input type="date" id="appointment-date" name="appointment-date" required>
+
+            <!-- Preferred Time Slot -->
+            <label for="time-slot">Preferred Time Slot:</label>
+            <select id="time-slot" name="time-slot" required>
+                <option value="">Select</option>
+                <option value="morning">Morning (9 AM - 12 PM)</option>
+                <option value="afternoon">Afternoon (12 PM - 4 PM)</option>
+                <option value="evening">Evening (4 PM - 8 PM)</option>
+            </select>
+
+            <!-- Select Doctor -->
+            <label for="doctor">Select Doctor/Specialization:</label>
+            <select id="doctor" name="doctor" required>
+                <option value="">Select</option>
+                <option value="general_physician">General Physician</option>
+                <option value="dentist">Dentist</option>
+                <option value="cardiologist">Cardiologist</option>
+                <option value="orthopedic">Orthopedic</option>
+                <option value="neurologist">Neurologist</option>
+                <option value="gynecologist">Gynecologist</option>
+                <option value="pediatrician">Pediatrician</option>
+            </select>
+
+            <!-- Medical History -->
+            <label>Medical History (Check if applicable):</label>
+            <div class="checkbox-group">
+                <label><input type="checkbox" name="medical_history" value="diabetes"> Diabetes</label>
+                <label><input type="checkbox" name="medical_history" value="hypertension"> Hypertension</label>
+                <label><input type="checkbox" name="medical_history" value="asthma"> Asthma</label>
+                <label><input type="checkbox" name="medical_history" value="heart_disease"> Heart Disease</label>
+                <label><input type="checkbox" name="medical_history" value="none"> None</label>
+            </div>
+
+            <!-- Describe Your Problem -->
+            <label for="problem">Describe Your Problem:</label>
+            <textarea id="problem" name="problem" rows="4" required></textarea>
+
+            <!-- Upload Medical Reports -->
+            <label for="reports">Upload Medical Reports (if any):</label>
+            <input type="file" id="reports" name="reports" accept="image/*, .pdf">
+
+            <!-- Additional Comments -->
+            <label for="comments">Additional Comments:</label>
+            <textarea id="comments" name="comments" rows="3"></textarea>
+
+            <!-- Submit Button -->
+            <button type="submit">Book Appointment</button>
+        </form>
     </div>
-    <div class="doctor-card">
-      <h3>Dr. Jane Smith</h3>
-      <p>Dermatologist</p>
-      <button onclick="bookAppointment('Dr. Jane Smith', 'Dermatologist')">Book</button>
-    </div>
-    <div class="doctor-card">
-      <h3>Dr. Emily Brown</h3>
-      <p>Pediatrician</p>
-      <button onclick="bookAppointment('Dr. Emily Brown', 'Pediatrician')">Book</button>
-    </div>
-    <div class="doctor-card">
-      <h3>Dr. Michael Lee</h3>
-      <p>Orthopedic Surgeon</p>
-      <button onclick="bookAppointment('Dr. Michael Lee', 'Orthopedic Surgeon')">Book</button>
-    </div>
-  </div>
 
-  <!-- Confirmation Page -->
-  <div class="container confirmation" id="confirmation-page">
-    <h2>🎉 Appointment Booked Successfully!</h2>
-    <p>We will contact you shortly.</p>
-    <button onclick="window.location.href='home.html'">Go Back</button>
-  </div>
+    <!-- Latest EmailJS SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 
-  <script>
-    // Handle Form Submission
-    document.getElementById('appointment-form').addEventListener('submit', function (e) {
-      e.preventDefault();
-      const name = document.getElementById('name').value;
-      const mobile = document.getElementById('mobile').value;
-      const bloodGroup = document.getElementById('blood-group').value;
-      const weight = document.getElementById('weight').value;
-      const height = document.getElementById('height').value;
-      const symptoms = document.getElementById('symptoms').value;
+    <script>
+        // Initialize EmailJS properly
+        (function() {
+            emailjs.init("tbCWrN3v-IOKvZIhd"); // Replace with your EmailJS Public Key
+        })();
 
-      // Save user details to localStorage
-      localStorage.setItem('fullName', name);
-      localStorage.setItem('mobile', mobile);
-      localStorage.setItem('bloodGroup', bloodGroup);
-      localStorage.setItem('weight', weight);
-      localStorage.setItem('height', height);
-      localStorage.setItem('symptoms', symptoms);
+        document.getElementById("appointment-form").addEventListener("submit", function(event) {
+            event.preventDefault(); // Prevent default form submission
 
-      // Move to Doctor List Page
-      document.getElementById('appointment-form-page').style.display = 'none';
-      document.getElementById('doctor-list-page').style.display = 'block';
-    });
+            const serviceID = "service_rlg0apd"; // Replace with your EmailJS Service ID
+            const templateID = "template_i0w7vyr"; // Replace with your EmailJS Template ID
 
-    // Book Appointment
-    function bookAppointment(doctorName, specialization) {
-      const appointment = {
-        doctorName,
-        specialization,
-        date: new Date().toLocaleDateString(),
-        time: new Date().toLocaleTimeString()
-      };
+            const formData = {
+                to_name: "Doctor",
+                from_name: document.getElementById("name").value,
+                dob: document.getElementById("dob").value,
+                gender: document.querySelector('input[name="gender"]:checked')?.value || "Not specified",
+                email: document.getElementById("email").value,
+                phone: document.getElementById("phone").value,
+                emergency_contact: document.getElementById("emergency-contact").value,
+                appointment_date: document.getElementById("appointment-date").value,
+                time_slot: document.getElementById("time-slot").value,
+                doctor: document.getElementById("doctor").options[document.getElementById("doctor").selectedIndex].text,
+                problem: document.getElementById("problem").value,
+                medical_history: Array.from(document.querySelectorAll('input[name="medical_history"]:checked'))
+                    .map(el => el.value).join(", ") || "None",
+                additional_comments: document.getElementById("comments").value
+            };
 
-      // Save appointment to localStorage
-      localStorage.setItem('appointment', JSON.stringify(appointment));
-
-      // Show Confirmation Page
-      document.getElementById('doctor-list-page').style.display = 'none';
-      document.getElementById('confirmation-page').style.display = 'block';
-    }
-
-    // Go Back to Doctor List
-    function goBack() {
-      document.getElementById('confirmation-page').style.display = 'none';
-      document.getElementById('doctor-list-page').style.display = 'block';
-    }
-  </script>
+            emailjs.send(serviceID, templateID, formData)
+                .then(() => {
+                    alert("Appointment request sent successfully!");
+                    document.getElementById("appointment-form").reset(); // Reset form after submission
+                })
+                .catch((err) => {
+                    alert("Failed to send email. Please try again. Error: " + JSON.stringify(err));
+                });
+        });
+    </script>
 </body>
 </html>
