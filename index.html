@@ -6,7 +6,7 @@
     <title>Health Hub - Login & Signup</title>
     <link rel="icon" type="image/png" href="icon.jpg">
     <style>
-        /* General Styling */
+        
         * {
             margin: 0;
             padding: 0;
@@ -22,8 +22,7 @@
             user-select: none;
         }
 
-        /* Left Section */
-       /* Ensures the image covers the entire section */
+    
 .left-section {
     width: 50%;
     position: relative;
@@ -37,7 +36,7 @@
     filter: brightness(0.6);
 }
 
-/* Responsive Design */
+
 @media (max-width: 768px) {
     body {
         flex-direction: column;
@@ -45,13 +44,13 @@
 
     .left-section {
         width: 100%;
-        height: 50vh; /* Adjusts height for mobile */
+        height: 50vh; 
     }
 
     .left-section img {
         width: 100%;
         height: 100%;
-        object-fit: cover; /* Ensures full coverage without distortion */
+        object-fit: cover; 
     }
 
     .overlay {
@@ -89,7 +88,7 @@
             transform: scale(1.1);
         }
 
-        /* Right Section (Form Container) */
+        
         .right-section {
             width: 50%;
             display: flex;
@@ -208,8 +207,6 @@
     </style>
 </head>
 <body>
-
-    <!-- Left Section (Image) -->
     <div class="left-section">
         <img src="icon.jpg" alt="Health Hub">
         <div class="overlay">
@@ -218,7 +215,6 @@
         </div>
     </div>
 
-    <!-- Right Section (Login & Signup) -->
     <div class="right-section">
         <div class="container">
             <div id="login-container">
@@ -256,8 +252,7 @@
         // Firebase Import
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
         import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js";
-    
-        // Firebase Config (Replace with your own)
+
         const firebaseConfig = {
             apiKey: "AIzaSyAplyqPcsnsaeE6RkA1SvOrmnt9_hjr6lo",
             authDomain: "health-information-1843e.firebaseapp.com",
@@ -268,11 +263,10 @@
             measurementId: "G-Z38WCH2KTH"
         };
     
-        // Initialize Firebase
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
     
-        // Admin Emails (Array of Admin Emails)
+       
         const adminEmails = [
             "hariomsoni0818@gmail.com",
             "rajaayush931@gmail.com",
@@ -290,13 +284,12 @@
                 .then((userCredential) => {
                     const user = userCredential.user;
                     
-                    // Check if the user's email is in the adminEmails array
                     if (adminEmails.includes(user.email)) {
                         alert("✅ Admin Login Successful!");
                         window.location.href = "https://console.firebase.google.com/project/health-information-1843e";  // Admin dashboard or page
                     } else {
                         alert("✅ Login Successful!");
-                        window.location.href = "home.html";  // General user page
+                        window.location.href = "home.html";  
                     }
                 })
                 .catch((error) => {
@@ -304,7 +297,7 @@
                 });
         });
     
-        // Signup Function
+      
         document.getElementById('signupBtn').addEventListener('click', () => {
             const email = document.getElementById('signupEmail').value;
             const password = document.getElementById('signupPassword').value;
@@ -312,14 +305,14 @@
             createUserWithEmailAndPassword(auth, email, password)
                 .then(() => {
                     alert("✅ Account Created Successfully!");
-                    window.location.href = "index.html"; // Redirect after signup
+                    window.location.href = "index.html"; 
                 })
                 .catch((error) => {
                     document.getElementById('signupError').textContent = error.message;
                 });
         });
     
-        // Password Reset Function
+       
         document.getElementById('resetBtn').addEventListener('click', () => {
             const email = document.getElementById('resetEmail').value;
     
@@ -332,7 +325,7 @@
                 });
         });
     
-        // UI Toggle Functions
+        
         document.getElementById('showSignup').addEventListener('click', () => {
             document.getElementById('login-container').style.display = 'none';
             document.getElementById('signup-container').style.display = 'block';
@@ -355,16 +348,15 @@
        history.replaceState(null, null, "home.html");//
 
      document.addEventListener("DOMContentLoaded", function () {
-        // Check if user is already logged in
+      
         if (localStorage.getItem("loggedIn") === "true") {
-            window.location.href = "dashboard.html"; // Replace with your homepage/dashboard
+            window.location.href = "dashboard.html"; 
         }
     });
     
     function login() {
-        // Assuming login is successful
         localStorage.setItem("loggedIn", "true"); 
-        window.location.href = "dashboard.html"; // Redirect to dashboard after login
+        window.location.href = "dashboard.html"; 
     }
     
     </script>
