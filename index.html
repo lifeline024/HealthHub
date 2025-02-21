@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Health Hub - Login & Signup</title>
-    <link rel="icon" type="image/png" href="icon.jpg">
+    <link rel="icon" type="image/png" href="logo.png">
     <style>
-        
+        /* General Styling */
         * {
             margin: 0;
             padding: 0;
@@ -19,10 +19,10 @@
             height: 100vh;
             background: linear-gradient(135deg, #ff9a9e, #fad0c4);
             overflow: hidden;
-            user-select: none;
         }
 
-    
+        /* Left Section */
+       /* Ensures the image covers the entire section */
 .left-section {
     width: 50%;
     position: relative;
@@ -36,7 +36,7 @@
     filter: brightness(0.6);
 }
 
-
+/* Responsive Design */
 @media (max-width: 768px) {
     body {
         flex-direction: column;
@@ -44,13 +44,13 @@
 
     .left-section {
         width: 100%;
-        height: 50vh; 
+        height: 50vh; /* Adjusts height for mobile */
     }
 
     .left-section img {
         width: 100%;
         height: 100%;
-        object-fit: cover; 
+        object-fit: cover; /* Ensures full coverage without distortion */
     }
 
     .overlay {
@@ -88,7 +88,7 @@
             transform: scale(1.1);
         }
 
-        
+        /* Right Section (Form Container) */
         .right-section {
             width: 50%;
             display: flex;
@@ -207,14 +207,17 @@
     </style>
 </head>
 <body>
+
+    <!-- Left Section (Image) -->
     <div class="left-section">
-        <img src="icon.jpg" alt="Health Hub">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRgNs7PPC2UE_2zjFQ8UEBVdz2ZVkzg5gWI0w&s" alt="Health Hub">
         <div class="overlay">
             <h1>Welcome to Health Hub</h1>
             <p>Your trusted platform for secure health data management and wellness tracking.</p>
         </div>
     </div>
 
+    <!-- Right Section (Login & Signup) -->
     <div class="right-section">
         <div class="container">
             <div id="login-container">
@@ -252,7 +255,8 @@
         // Firebase Import
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
         import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js";
-
+    
+        // Firebase Config (Replace with your own)
         const firebaseConfig = {
             apiKey: "AIzaSyAplyqPcsnsaeE6RkA1SvOrmnt9_hjr6lo",
             authDomain: "health-information-1843e.firebaseapp.com",
@@ -263,41 +267,52 @@
             measurementId: "G-Z38WCH2KTH"
         };
     
+        // Initialize Firebase
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
     
-       
-        const adminEmails = [
-            "hariomsoni0818@gmail.com",
-            "rajaayush931@gmail.com",
-            "admin3@healthhub.com",
-            "admin4@healthhub.com",
-            "admin5@healthhub.com"
-        ];
-    
-        // Login Function
-        document.getElementById('loginBtn').addEventListener('click', () => {
-            const email = document.getElementById('loginEmail').value;
-            const password = document.getElementById('loginPassword').value;
-    
-            signInWithEmailAndPassword(auth, email, password)
-                .then((userCredential) => {
-                    const user = userCredential.user;
-                    
-                    if (adminEmails.includes(user.email)) {
-                        alert("✅ Admin Login Successful!");
-                        window.location.href = "https://console.firebase.google.com/project/health-information-1843e";  // Admin dashboard or page
-                    } else {
-                        alert("✅ Login Successful!");
-                        window.location.href = "home.html";  
-                    }
-                })
-                .catch((error) => {
-                    document.getElementById('loginError').textContent = error.message;
-                });
-        });
-    
-      
+       // Admin Emails (Array of Admin Emails)
+const adminEmails = [
+"hariomsoni0818@gmail.com",
+"rajaayush931@gmail.com",
+"admin3@healthhub.com",
+"admin4@healthhub.com",
+"admin5@healthhub.com"
+];
+
+// Doctor Emails (Array of Doctor Emails)
+const doctorEmails = [
+"doctor.rahul@healthhub.com",
+"doctor2@healthhub.com",
+"doctor3@healthhub.com"
+];
+
+// Login Function
+document.getElementById('loginBtn').addEventListener('click', () => {
+const email = document.getElementById('loginEmail').value;
+const password = document.getElementById('loginPassword').value;
+
+signInWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+        const user = userCredential.user;
+
+        if (adminEmails.includes(user.email)) {
+            alert("✅ Admin Login Successful!");
+            window.location.href = "https://console.firebase.google.com/project/health-information-1843e";  // Admin dashboard
+        } else if (doctorEmails.includes(user.email)) {
+            alert("✅ Doctor Login Successful!");
+            window.location.href = "doctor-dashboard.html";  // Doctor page
+        } else {
+            alert("✅ Login Successful!");
+            window.location.href = "home.html";  // General user page
+        }
+    })
+    .catch((error) => {
+        document.getElementById('loginError').textContent = error.message;
+    });
+});
+
+        // Signup Function
         document.getElementById('signupBtn').addEventListener('click', () => {
             const email = document.getElementById('signupEmail').value;
             const password = document.getElementById('signupPassword').value;
@@ -305,14 +320,14 @@
             createUserWithEmailAndPassword(auth, email, password)
                 .then(() => {
                     alert("✅ Account Created Successfully!");
-                    window.location.href = "index.html"; 
+                    window.location.href = "index.html"; // Redirect after signup
                 })
                 .catch((error) => {
                     document.getElementById('signupError').textContent = error.message;
                 });
         });
     
-       
+        // Password Reset Function
         document.getElementById('resetBtn').addEventListener('click', () => {
             const email = document.getElementById('resetEmail').value;
     
@@ -325,7 +340,7 @@
                 });
         });
     
-        
+        // UI Toggle Functions
         document.getElementById('showSignup').addEventListener('click', () => {
             document.getElementById('login-container').style.display = 'none';
             document.getElementById('signup-container').style.display = 'block';
@@ -345,19 +360,9 @@
             document.getElementById('forgotPassword-container').style.display = 'none';
             document.getElementById('login-container').style.display = 'block';
         });    
-       history.replaceState(null, null, "home.html");//
+     history.replaceState(null, null, "admin.html");
 
-     document.addEventListener("DOMContentLoaded", function () {
-      
-        if (localStorage.getItem("loggedIn") === "true") {
-            window.location.href = "dashboard.html"; 
-        }
-    });
-    
-    function login() {
-        localStorage.setItem("loggedIn", "true"); 
-        window.location.href = "dashboard.html"; 
-    }
+     
     
     </script>
 </body>
